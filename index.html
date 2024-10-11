@@ -11,8 +11,26 @@
     <link href="resources/litecoin.png" rel="icon" sizes="166x166" type="image/png"/>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"/>
     <style>
-        body { font-family: Arial, sans-serif; margin: 0; padding: 0; box-sizing: border-box; background: linear-gradient(120deg, #000000, #000000, #000000); color: #fff; overflow-x: hidden; user-select: none; -ms-overflow-style: none; scrollbar-width: none; position: relative; }
-        .container { width: 90%; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        body {
+            font-family: Arial, sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            background: linear-gradient(120deg, #000000, #000000, #000000); 
+            color: #fff; 
+            overflow-x: hidden; 
+            user-select: none; 
+            -ms-overflow-style: none; 
+            scrollbar-width: none; 
+            position: relative; 
+        }
+        .container { 
+            width: 90%; 
+            margin: 0 auto; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+        }
         .logo h1 { margin: 0; }
         nav ul { list-style: none; padding: 0; margin: 0; display: flex; }
         nav ul li { margin-left: 40px; }
@@ -32,8 +50,15 @@
         @keyframes start { 0% { transform: perspective(1000px) rotateY(0deg); box-shadow: 0 0 20px 10px rgba(128, 0, 128, 0.7); } 100% { transform: perspective(1000px) rotateY(-30deg); box-shadow: 0 0 20px 10px rgba(128, 0, 128, 0.7); } }
         @keyframes float { 0%, 100% { transform: translateY(0) perspective(1000px) rotateY(-30deg); } 50% { transform: translateY(-20px) perspective(1000px) rotateY(-30deg); } }
         @keyframes glow { 0%, 100% { box-shadow: 0 0 20px 10px rgba(128, 0, 128, 0.7); } 50% { box-shadow: 0 0 30px 15px rgba(128, 0, 128, 1); } }
-        #stars { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
-        
+        #stars { 
+            position: fixed; /* Keep it fixed */
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            z-index: -1; /* Lower z-index so it's behind the buttons */
+        }
+
         /* New Tool Showcase Section */
         .showcase-section { width: 100%; height: 100vh; background-color: #222; display: flex; justify-content: center; align-items: center; padding: 40px 20px; }
         .showcase-grid { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; max-width: 1200px; width: 100%; }
@@ -59,102 +84,109 @@
         .version-item { display: flex; justify-content: space-between; align-items: center; max-width: 800px; width: 100%; margin: 10px 0; padding: 10px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
         .version-item:last-child { border-bottom: none; }
         .version-item h4 { margin: 0; color: #fff; flex: 1; }
-        .version-item a { display: inline-block; padding: 10px 20px; background-color: #333; color: #fff; text-decoration: none; border-radius: 5px; transition: background-color 0.3s ease, transform 0.2s ease; margin-right: 10px; }
-        .version-item a:hover { background-color: #555; transform: scale(1.05); box-shadow: 0 0 10px rgba(255, 255, 255, 0.2); }
+        .version-item a { display: inline-block; padding: 10px 15px; background-color: #333; color: #fff; border-radius: 5px; text-decoration: none; transition: background-color 0.3s ease; }
+        .version-item a:hover { background-color: #555; }
     </style>
 </head>
 <body>
     <canvas id="stars"></canvas>
-
-    <!-- Main Section (Home Page) -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>0x Raider</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="#"><i class="fas fa-info-circle"></i> About</a></li>
+                    <li><a href="#"><i class="fas fa-tools"></i> Tools</a></li>
+                    <li><a href="#"><i class="fas fa-address-book"></i> Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
     <main>
         <div class="main-content">
             <div class="left-content">
-                <h2>0x Raider</h2>
-                <p>Your ultimate tool for managing your crypto portfolio.</p>
+                <h2>Welcome to 0x Raider</h2>
+                <p>Your one-stop solution for blockchain tools and resources.</p>
                 <div class="buttons">
-                    <a class="button" onclick="javascript: window.open('downloads/latest-version.zip');" style="cursor: pointer;">
-                        <i class="fa-solid fa-download" style="margin-right: 6px;"></i>
-                        Download Latest Version
-                    </a>
-                    <a class="button" onclick="javascript: window.open('https://discord.gg/eqNCeB4rEB');" style="cursor: pointer;">
-                        <i class="fa-brands fa-github" style="margin-right: 6px;"></i>
-                        GitHub
-                    </a>
+                    <a href="#" class="button">Get Started</a>
+                    <a href="#" class="button">Learn More</a>
                 </div>
             </div>
             <div class="screenshot-container">
-                <img class="screenshot" draggable="false" src="images/0x.png" alt="0x Raider Screenshot"/>
+                <img src="screenshot.png" alt="Screenshot" class="screenshot"/>
             </div>
         </div>
     </main>
-
-    <!-- New Showcase Section -->
     <section class="showcase-section">
         <div class="showcase-grid">
             <div class="showcase-item">
-                <img src="images/tool1.png" alt="Tool Showcase 1"/>
-                <h3>Feature One</h3>
-                <p>Brief description of the first tool feature.</p>
+                <img src="tool1.png" alt="Tool 1"/>
+                <h3>Tool 1</h3>
+                <p>Description of Tool 1</p>
             </div>
             <div class="showcase-item">
-                <img src="images/tool2.png" alt="Tool Showcase 2"/>
-                <h3>Feature Two</h3>
-                <p>Brief description of the second tool feature.</p>
+                <img src="tool2.png" alt="Tool 2"/>
+                <h3>Tool 2</h3>
+                <p>Description of Tool 2</p>
             </div>
             <div class="showcase-item">
-                <img src="images/tool3.png" alt="Tool Showcase 3"/>
-                <h3>Feature Three</h3>
-                <p>Brief description of the third tool feature.</p>
+                <img src="tool3.png" alt="Tool 3"/>
+                <h3>Tool 3</h3>
+                <p>Description of Tool 3</p>
             </div>
         </div>
     </section>
-
-    <!-- Version List Section -->
     <section class="version-list">
-        <h3>Previous Versions</h3>
+        <h3>Available Versions</h3>
         <div class="version-item">
-            <h4>Version 0.1</h4>
-            <a class="button" onclick="javascript: window.open('https://realgekkefries.github.io/0xRaider/');" style="cursor: pointer;">
-                <i class="fa-solid fa-download" style="margin-right: 6px;"></i>Download
-            </a>
+            <h4>Version 1.0</h4>
+            <a href="#">Download</a>
         </div>
         <div class="version-item">
-            <h4>Version 0.2</h4>
-            <a class="button" onclick="javascript: window.open('https://realgekkefries.github.io/0xRaider/');" style="cursor: pointer;">
-                <i class="fa-solid fa-download" style="margin-right: 6px;"></i>Download
-            </a>
+            <h4>Version 2.0</h4>
+            <a href="#">Download</a>
         </div>
-        <!-- Add more versions as needed -->
+        <div class="version-item">
+            <h4>Version 3.0</h4>
+            <a href="#">Download</a>
+        </div>
     </section>
-
     <script>
-        const canvas = document.getElementById('stars');
-        const ctx = canvas.getContext('2d');
-        let stars = [];
-        function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-        resizeCanvas();
-        for (let i = 0; i < 100; i++) {
-            stars.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, radius: Math.random() * 2, speed: Math.random() * 2 + 0.5, opacity: Math.random() });
+        // Stars background effect
+        const canvas = document.getElementById("stars");
+        const ctx = canvas.getContext("2d");
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const stars = [];
+        for (let i = 0; i < 200; i++) {
+            stars.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                radius: Math.random() * 1.5,
+                alpha: Math.random() * 1
+            });
         }
-        function animateStars() {
+
+        function draw() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            for (let i = 0; i < stars.length; i++) {
-                const star = stars[i];
-                star.y -= star.speed;
-                if (star.y < 0) {
-                    star.y = canvas.height;
-                    star.x = Math.random() * canvas.width;
-                }
+            stars.forEach(star => {
                 ctx.beginPath();
                 ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`;
+                ctx.fillStyle = `rgba(255, 255, 255, ${star.alpha})`;
                 ctx.fill();
-            }
-            requestAnimationFrame(animateStars);
+            });
+            requestAnimationFrame(draw);
         }
-        animateStars();
-        window.addEventListener('resize', resizeCanvas);
+
+        draw();
+        window.addEventListener("resize", () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
     </script>
 </body>
 </html>
