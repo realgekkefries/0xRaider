@@ -36,13 +36,13 @@
    
    /* New Tool Showcase Section */
    .showcase-section { width: 100%; height: 100vh; background-color: #222; display: flex; justify-content: center; align-items: center; padding: 40px 20px; }
-   .showcase-grid { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; width: 100%; }
+   .showcase-grid { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; width: 100%; gap: 30px; }
    .showcase-item { width: 30%; text-align: center; }
    .showcase-item img { width: 100%; height: auto; border-radius: 10px; box-shadow: 0 0 20px rgba(128, 0, 128, 0.7); transition: transform 0.3s ease; }
    .showcase-item img:hover { transform: scale(1.05); }
    .showcase-item h3 { margin-top: 15px; font-size: 1.5rem; color: #fff; }
    .showcase-item p { color: #aaa; font-size: 1.1rem; }
-   
+
    /* Version List Styles */
    .version-list { padding: 40px 20px; background-color: #111; }
    .version-list h3 { text-align: center; font-size: 2rem; margin-bottom: 20px; color: #ff00ff; }
@@ -51,6 +51,28 @@
    .version-item h4 { margin: 0; color: #fff; }
    .version-item a { padding: 10px 20px; background-color: #333; color: #fff; text-decoration: none; border-radius: 5px; transition: background-color 0.3s ease; }
    .version-item a:hover { background-color: #555; }
+
+   /* Responsive Styles */
+   @media (max-width: 1200px) {
+     .showcase-grid { flex-direction: column; }
+     .showcase-item { width: 100%; margin-bottom: 30px; }
+   }
+   @media (max-width: 768px) {
+     .left-content h2 { font-size: 2rem; }
+     .buttons { display: flex; flex-direction: column; align-items: flex-start; }
+     .button { margin-bottom: 10px; }
+     .screenshot-container { margin: 0; padding-right: 0; }
+     .screenshot { max-width: 100%; }
+   }
+   @media (max-width: 480px) {
+     nav ul li { margin-left: 20px; }
+     .left-content h2 { font-size: 1.5rem; }
+     .left-content p { font-size: 1rem; }
+     .buttons { width: 100%; text-align: center; }
+     .button { width: 100%; margin: 5px 0; }
+     .showcase-grid { flex-direction: column; }
+     .showcase-item { width: 100%; }
+   }
   </style>
  </head>
  <body>
@@ -63,23 +85,17 @@
      <h2>0x Raider</h2>
      <p>Made With High Quality</p>
      <div class="buttons">
-      <a class="button" onclick="javascript: window.open('downloads/latest-version.zip');" style="cursor: pointer;">
-       <i class="fa-solid fa-download" style="margin-right: 6px;"></i>
-       Download Latest Version
-      </a>
-      <a class="button" onclick="javascript: window.open('https://discord.gg/eqNCeB4rEB');" style="cursor: pointer;">
-       <i class="fa-brands fa-github" style="margin-right: 6px;"></i>
-       GitHub
-      </a>
+      <a class="button" onclick="javascript: window.open('downloads/latest.zip', '_self')">Download Latest Version</a>
+      <a class="button" href="#">Contact</a>
      </div>
     </div>
     <div class="screenshot-container">
-     <img class="screenshot" draggable="false" src="images/0x.png" alt="0x Raider Screenshot"/>
+     <img class="screenshot" src="images/0x.png" alt="Screenshot"/>
     </div>
    </div>
   </main>
 
-  <!-- New Showcase Section -->
+  <!-- Showcase Section -->
   <section class="showcase-section">
    <div class="showcase-grid">
     <div class="showcase-item">
@@ -127,3 +143,4 @@
   </script>
  </body>
 </html>
+
