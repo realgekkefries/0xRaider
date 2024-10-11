@@ -32,9 +32,9 @@
             align-items: center; 
         }
         .logo h1 { margin: 0; }
-        nav ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; }
-        nav ul li { margin-bottom: 20px; }
-        nav ul li a { color: #fff; text-decoration: none; padding: 10px; border: 1px solid transparent; transition: all 0.3s ease; }
+        nav ul { list-style: none; padding: 0; margin: 0; display: flex; }
+        nav ul li { margin-left: 40px; }
+        nav ul li a { color: #fff; text-decoration: none; padding: 5px 10px; border: 1px solid transparent; transition: all 0.3s ease; }
         nav ul li a:hover { border: 1px solid #fff; border-radius: 5px; }
         nav ul li a i { margin-right: 5px; }
         main { 
@@ -99,7 +99,7 @@
             max-width: 800px; 
             box-shadow: 0 0 20px 10px rgba(128, 0, 128, 0.7); 
             margin-top: 6vh; 
-            animation: start 1s ease-in-out 0s  1, float 3s ease-in-out infinite 1s, glow 3s ease-in-out infinite 1s; 
+            animation: start 1s ease-in-out 0s 1, float 3s ease-in-out infinite 1s, glow 3s ease-in-out infinite 1s; 
         }
         @keyframes start { 
             0% { transform: perspective(1000px) rotateY(0deg); box-shadow: 0 0 20px 10px rgba(128, 0, 128, 0.7); } 
@@ -209,59 +209,13 @@
             transform: scale(1.05); 
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.2); 
         }
-
-        /* Navigation Bar Styles */
-        .nav-bar { 
-            position: fixed; 
-            top: 0; 
-            left: 0; 
-            width: 200px; 
-            height: 100vh; 
-            background-color: #333; 
-            display: flex; 
-            flex-direction: column; 
-            justify-content: center; 
-            align-items: center; 
-            padding: 20px; 
-            z-index: 1; 
-        }
-        .nav-bar ul { 
-            list-style: none; 
-            padding: 0; 
-            margin: 0; 
-            display: flex; 
-            flex-direction: column; 
-        }
-        .nav-bar ul li { 
-            margin-bottom: 20px; 
-        }
-        .nav-bar ul li a { 
-            color: #fff; 
-            text-decoration: none; 
-            padding: 10px; 
-            border: 1px solid transparent; 
-            transition: all 0.3s ease; 
-        }
-        .nav-bar ul li a:hover { 
-            border: 1px solid #fff; 
-            border-radius: 5px; 
-        }
     </style>
 </head>
 <body>
     <canvas id="stars"></canvas>
 
-    <!-- Navigation Bar -->
-    <div class="nav-bar">
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#showcase">Showcase</a></li>
-            <li><a href="#versions">Versions</a></li>
-        </ul>
-    </div>
-
     <!-- Main Section (Home Page) -->
-    <main id="home">
+    <main>
         <div class="main-content">
             <div class="left-content">
                 <h2>0x Raider</h2>
@@ -284,7 +238,7 @@
     </main>
 
     <!-- New Showcase Section -->
-    <section id="showcase" class="showcase-section">
+    <section class="showcase-section">
         <div class="showcase-grid">
             <div class="showcase-item">
                 <img src="images/tool1.png" alt="Tool Showcase 1"/>
@@ -305,7 +259,7 @@
     </section>
 
     <!-- Version List Section -->
-    <section id="versions" class="version-list">
+    <section class="version-list">
         <h3>Previous Versions</h3>
         <div class="version-item">
             <h4>Version 0.1</h4>
@@ -313,7 +267,7 @@
                 <i class="fa-solid fa-download" style="margin-right: 6px;"></i>Download
             </a>
         </div>
-        <div class="version-item ">
+        <div class="version-item">
             <h4>Version 0.2</h4>
             <a class="button" onclick="javascript: window.open('https://realgekkefries.github.io/0xRaider/');" style="cursor: pointer; position: relative; z-index: 1;">
                 <i class="fa-solid fa-download" style="margin-right: 6px;"></i>Download
@@ -359,7 +313,7 @@
                 }
                 ctx.beginPath();
                 ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`; 
+                ctx.fillStyle = rgba(255, 255, 255, ${star.opacity}); // Corrected the syntax here
                 ctx.fill();
             }
             requestAnimationFrame(animateStars);
