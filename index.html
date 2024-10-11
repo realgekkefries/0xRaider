@@ -54,83 +54,107 @@
         }
 
         /* Version List Styles */
-        .version-list { padding: 40px 20px; background-color: #111; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 1; position: relative; }
+        .version-list { padding: 40px 20px; background-color: #111; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; }
         .version-list h3 { text-align: center; font-size: 2rem; margin-bottom: 20px; color: #ff00ff; }
         .version-item { display: flex; justify-content: space-between; align-items: center; max-width: 800px; width: 100%; margin: 10px 0; padding: 10px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
         .version-item:last-child { border-bottom: none; }
         .version-item h4 { margin: 0; color: #fff; flex: 1; }
         .version-item a { display: inline-block; padding: 10px 20px; background-color: #333; color: #fff; text-decoration: none; border-radius: 5px; transition: background-color 0.3s ease, transform 0.2s ease; margin-right: 10px; }
         .version-item a:hover { background-color: #555; transform: scale(1.05); box-shadow: 0 0 10px rgba(255, 255, 255, 0.2); }
-
     </style>
 </head>
 <body>
-    <div id="stars"></div>
-    <div class="container">
-        <div class="logo">
-            <h1>0x Raider</h1>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="#features"><i class="fas fa-check"></i>Features</a></li>
-                <li><a href="#tools"><i class="fas fa-tools"></i>Tools</a></li>
-                <li><a href="#about"><i class="fas fa-info-circle"></i>About</a></li>
-            </ul>
-        </nav>
-    </div>
+    <canvas id="stars"></canvas>
 
+    <!-- Main Section (Home Page) -->
     <main>
         <div class="main-content">
             <div class="left-content">
-                <h2>Welcome to 0x Raider</h2>
-                <p>Your ultimate tool for analyzing and tracking transactions. Get started now!</p>
+                <h2>0x Raider</h2>
+                <p>Your ultimate tool for managing your crypto portfolio.</p>
                 <div class="buttons">
-                    <a href="#get-started" class="button">Get Started</a>
-                    <a href="#learn-more" class="button">Learn More</a>
+                    <a class="button" onclick="javascript: window.open('downloads/latest-version.zip');" style="cursor: pointer;">
+                        <i class="fa-solid fa-download" style="margin-right: 6px;"></i>
+                        Download Latest Version
+                    </a>
+                    <a class="button" onclick="javascript: window.open('https://discord.gg/eqNCeB4rEB');" style="cursor: pointer;">
+                        <i class="fa-brands fa-github" style="margin-right: 6px;"></i>
+                        GitHub
+                    </a>
                 </div>
             </div>
             <div class="screenshot-container">
-                <img class="screenshot" src="resources/screenshot.png" alt="0x Raider Screenshot"/>
+                <img class="screenshot" draggable="false" src="images/0x.png" alt="0x Raider Screenshot"/>
             </div>
         </div>
     </main>
 
-    <div class="showcase-section">
+    <!-- New Showcase Section -->
+    <section class="showcase-section">
         <div class="showcase-grid">
             <div class="showcase-item">
-                <img src="resources/tool1.png" alt="Tool 1"/>
-                <h3>Tool 1</h3>
-                <p>Description for Tool 1</p>
+                <img src="images/tool1.png" alt="Tool Showcase 1"/>
+                <h3>Feature One</h3>
+                <p>Brief description of the first tool feature.</p>
             </div>
             <div class="showcase-item">
-                <img src="resources/tool2.png" alt="Tool 2"/>
-                <h3>Tool 2</h3>
-                <p>Description for Tool 2</p>
+                <img src="images/tool2.png" alt="Tool Showcase 2"/>
+                <h3>Feature Two</h3>
+                <p>Brief description of the second tool feature.</p>
             </div>
             <div class="showcase-item">
-                <img src="resources/tool3.png" alt="Tool 3"/>
-                <h3>Tool 3</h3>
-                <p>Description for Tool 3</p>
+                <img src="images/tool3.png" alt="Tool Showcase 3"/>
+                <h3>Feature Three</h3>
+                <p>Brief description of the third tool feature.</p>
             </div>
         </div>
-    </div>
+    </section>
 
-    <div class="version-list">
-        <h3>Version List</h3>
+    <!-- Version List Section -->
+    <section class="version-list">
+        <h3>Previous Versions</h3>
         <div class="version-item">
-            <h4>Version 1.0</h4>
-            <a href="#" class="button">Download</a>
+            <h4>Version 0.1</h4>
+            <a class="button" onclick="javascript: window.open('https://realgekkefries.github.io/0xRaider/');" style="cursor: pointer;">
+                <i class="fa-solid fa-download" style="margin-right: 6px;"></i>Download
+            </a>
         </div>
         <div class="version-item">
-            <h4>Version 1.1</h4>
-            <a href="#" class="button">Download</a>
+            <h4>Version 0.2</h4>
+            <a class="button" onclick="javascript: window.open('https://realgekkefries.github.io/0xRaider/');" style="cursor: pointer;">
+                <i class="fa-solid fa-download" style="margin-right: 6px;"></i>Download
+            </a>
         </div>
-        <div class="version-item">
-            <h4>Version 1.2</h4>
-            <a href="#" class="button">Download</a>
-        </div>
-    </div>
+        <!-- Add more versions as needed -->
+    </section>
+
+    <script>
+        const canvas = document.getElementById('stars');
+        const ctx = canvas.getContext('2d');
+        let stars = [];
+        function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        resizeCanvas();
+        for (let i = 0; i < 100; i++) {
+            stars.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, radius: Math.random() * 2, speed: Math.random() * 2 + 0.5, opacity: Math.random() });
+        }
+        function animateStars() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < stars.length; i++) {
+                const star = stars[i];
+                star.y -= star.speed;
+                if (star.y < 0) {
+                    star.y = canvas.height;
+                    star.x = Math.random() * canvas.width;
+                }
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+                ctx.fillStyle = rgba(255, 255, 255, ${star.opacity});
+                ctx.fill();
+            }
+            requestAnimationFrame(animateStars);
+        }
+        animateStars();
+        window.addEventListener('resize', resizeCanvas);
+    </script>
 </body>
 </html>
-
-
