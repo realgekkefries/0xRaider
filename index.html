@@ -20,11 +20,61 @@
             color: #fff; 
             overflow-x: hidden; 
             user-select: none; 
+            -ms-overflow-style: none; 
+            scrollbar-width: none; 
+            position: relative; 
         }
-        /* Smooth scrolling */
-        html { scroll-behavior: smooth; }
-
-        /* Main layout */
+        /* Page Container */
+        .page-container {
+            display: flex;
+        }
+        /* Sidebar Styles */
+        .sidebar {
+            width: 250px;
+            background-color: #111;
+            color: #fff;
+            min-height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding-top: 20px;
+            z-index: 100;
+            overflow-y: auto;
+        }
+        .sidebar .logo h1 {
+            text-align: center;
+            font-size: 1.5rem;
+            color: #ff00ff;
+            margin-bottom: 30px;
+        }
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .sidebar ul li {
+            margin: 20px 0;
+        }
+        .sidebar ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.2rem;
+            padding: 10px 20px;
+            display: block;
+            transition: background-color 0.3s;
+        }
+        .sidebar ul li a:hover {
+            background-color: #333;
+        }
+        .sidebar ul li a i {
+            margin-right: 10px;
+        }
+        /* Content Styles */
+        .content {
+            margin-left: 250px; /* Same as sidebar width */
+            padding: 20px;
+            flex: 1;
+        }
+        /* Existing Styles */
         .container { 
             width: 90%; 
             margin: 0 auto; 
@@ -102,7 +152,6 @@
             margin-top: 6vh; 
             animation: start 1s ease-in-out 0s 1, float 3s ease-in-out infinite 1s, glow 3s ease-in-out infinite 1s; 
         }
-
         @keyframes start { 
             0% { transform: perspective(1000px) rotateY(0deg); box-shadow: 0 0 20px 10px rgba(128, 0, 128, 0.7); } 
             100% { transform: perspective(1000px) rotateY(-30deg); box-shadow: 0 0 20px 10px rgba(128, 0, 128, 0.7); } 
@@ -115,7 +164,14 @@
             0%, 100% { box-shadow: 0 0 20px 10px rgba(128, 0, 128, 0.7); } 
             50% { box-shadow: 0 0 30px 15px rgba(128, 0, 128, 1); } 
         }
-
+        #stars { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            z-index: 0; 
+        }
         /* New Tool Showcase Section */
         .showcase-section { 
             width: 100%; 
@@ -146,10 +202,17 @@
             box-shadow: 0 0 20px rgba(128, 0, 128, 0.7); 
             transition: transform 0.3s ease; 
         }
-        .showcase-item img:hover { transform: scale(1.1); }
+        .showcase-item img:hover { transform: scale(1.1); } /* Slightly increase scale on hover */
         .showcase-item h3 { margin-top: 15px; font-size: 1.5rem; color: #fff; }
         .showcase-item p { color: #aaa; font-size: 1.1rem; }
-        
+        /* Showcase Layout Adjustments */
+        .showcase-item:nth-child(1) { order: 1; } /* Top left */
+        .showcase-item:nth-child(2) { order: 2; /* Middle right */ margin-left: auto; margin-right: 20px; }
+        .showcase-item:nth-child(3) { order: 3; margin-top: auto; /* Bottom left */ }
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .showcase-item { width: 100%; }
+        }
         /* Version List Styles */
         .version-list { 
             padding: 40px 20px; 
@@ -166,132 +229,206 @@
             margin-bottom: 20px; 
             color: #ff00ff; 
         }
-
-        /* Scroll behavior adjustments */
-        .scroll-section { height: 100vh; }
-
-        /* Left navigation bar */
-        .nav-sidebar {
-            position: fixed;
-            top: 50%;
-            left: 20px;
-            transform: translateY(-50%);
-            z-index: 999;
+        .version-item { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            max-width: 800px; 
+            width: 100%; 
+            margin: 10px 0; 
+            padding: 10px; 
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
         }
-        .nav-sidebar ul {
-            list-style: none;
-            padding: 0;
+        .version-item:last-child { border-bottom: none; }
+        .version-item h4 { margin: 0; color: #fff; flex: 1; }
+        .version-item a { 
+            display: inline-block; 
+            padding: 10px 20px; 
+            background-color: #333; 
+            color: #fff; 
+            text-decoration: none; 
+            border-radius: 5px; 
+            transition: background-color 0.3s ease, transform 0.2s ease; 
+            margin-right: 10px; 
         }
-        .nav-sidebar ul li {
-            margin: 10px 0;
+        .version-item a:hover { 
+            background-color: #555; 
+            transform: scale(1.05); 
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2); 
         }
-        .nav-sidebar ul li a {
-            display: block;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background-color: #555;
-            text-indent: -9999px;
-            transition: background-color 0.3s ease;
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
         }
-        .nav-sidebar ul li a.active {
-            background-color: #ff00ff;
+        /* Section Animation */
+        section {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
         }
-
+        section.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Responsive Sidebar */
         @media (max-width: 768px) {
-            .showcase-item { width: 100%; }
+            .sidebar {
+                width: 200px;
+            }
+            .content {
+                margin-left: 200px;
+            }
+        }
+        @media (max-width: 576px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+            .sidebar .logo h1 {
+                margin-bottom: 15px;
+            }
+            .sidebar ul li {
+                display: inline-block;
+                margin: 10px;
+            }
+            .content {
+                margin-left: 0;
+            }
         }
     </style>
 </head>
 <body>
     <canvas id="stars"></canvas>
-
-    <!-- Left navigation bar -->
-    <div class="nav-sidebar">
-        <ul>
-            <li><a href="#section1" class="nav-link">Section 1</a></li>
-            <li><a href="#section2" class="nav-link">Section 2</a></li>
-            <li><a href="#section3" class="nav-link">Section 3</a></li>
-        </ul>
-    </div>
-
-    <!-- Main content sections -->
-    <main id="section1" class="scroll-section">
-        <div class="main-content">
-            <div class="left-content">
-                <h2>0x Raider</h2>
-                <p>Your ultimate tool for managing your crypto portfolio.</p>
-                <div class="buttons">
-                    <a class="button" onclick="javascript: window.open('downloads/latest-version.zip');">
-                        <i class="fa-solid fa-download"></i> Download Latest Version
-                    </a>
-                    <a class="button" onclick="javascript: window.open('https://discord.gg/eqNCeB4rEB');">
-                        <i class="fa-brands fa-github"></i> GitHub
+    <!-- Add Sidebar Navigation -->
+    <div class="page-container">
+        <nav class="sidebar">
+            <div class="logo">
+                <h1>0x Raider</h1>
+            </div>
+            <ul>
+                <li><a href="#home"><i class="fa-solid fa-home"></i>Home</a></li>
+                <li><a href="#showcase"><i class="fa-solid fa-toolbox"></i>Showcase</a></li>
+                <li><a href="#versions"><i class="fa-solid fa-code-branch"></i>Versions</a></li>
+            </ul>
+        </nav>
+        <!-- Main Content -->
+        <div class="content">
+            <!-- Main Section (Home Page) -->
+            <main id="home">
+                <div class="main-content">
+                    <div class="left-content">
+                        <h2>0x Raider</h2>
+                        <p>Your ultimate tool for managing your crypto portfolio.</p>
+                        <div class="buttons">
+                            <a class="button" onclick="javascript: window.open('downloads/latest-version.zip');" style="cursor: pointer;">
+                                <i class="fa-solid fa-download" style="margin-right: 6px;"></i>
+                                Download Latest Version
+                            </a>
+                            <a class="button" onclick="javascript: window.open('https://github.com/YourRepo');" style="cursor: pointer;">
+                                <i class="fa-brands fa-github" style="margin-right: 6px;"></i>
+                                GitHub
+                            </a>
+                        </div>
+                    </div>
+                    <div class="screenshot-container">
+                        <img class="screenshot" draggable="false" src="images/0x.png" alt="0x Raider Screenshot"/>
+                    </div>
+                </div>
+            </main>
+            <!-- New Showcase Section -->
+            <section id="showcase" class="showcase-section">
+                <div class="showcase-grid">
+                    <div class="showcase-item">
+                        <img src="images/tool1.png" alt="Tool Showcase 1"/>
+                        <h3>Feature One</h3>
+                        <p>Brief description of the first tool feature.</p>
+                    </div>
+                    <div class="showcase-item">
+                        <img src="images/tool2.png" alt="Tool Showcase 2"/>
+                        <h3>Feature Two</h3>
+                        <p>Brief description of the second tool feature.</p>
+                    </div>
+                    <div class="showcase-item">
+                        <img src="images/tool3.png" alt="Tool Showcase 3"/>
+                        <h3>Feature Three</h3>
+                        <p>Brief description of the third tool feature.</p>
+                    </div>
+                </div>
+            </section>
+            <!-- Version List Section -->
+            <section id="versions" class="version-list">
+                <h3>Previous Versions</h3>
+                <div class="version-item">
+                    <h4>Version 0.1</h4>
+                    <a class="button" onclick="javascript: window.open('downloads/version0.1.zip');" style="cursor: pointer; position: relative; z-index: 1;">
+                        <i class="fa-solid fa-download" style="margin-right: 6px;"></i>Download
                     </a>
                 </div>
-            </div>
-            <div class="screenshot-container">
-                <img class="screenshot" src="images/0x.png" alt="0x Raider Screenshot"/>
-            </div>
+                <div class="version-item">
+                    <h4>Version 0.2</h4>
+                    <a class="button" onclick="javascript: window.open('downloads/version0.2.zip');" style="cursor: pointer; position: relative; z-index: 1;">
+                        <i class="fa-solid fa-download" style="margin-right: 6px;"></i>Download
+                    </a>
+                </div>
+                <!-- Add more versions as needed -->
+            </section>
         </div>
-    </main>
-
-    <section id="section2" class="showcase-section scroll-section">
-        <div class="showcase-grid">
-            <div class="showcase-item">
-                <img src="images/tool1.png" alt="Tool Showcase 1"/>
-                <h3>Feature One</h3>
-                <p>Brief description of the first tool feature.</p>
-            </div>
-            <div class="showcase-item">
-                <img src="images/tool2.png" alt="Tool Showcase 2"/>
-                <h3>Feature Two</h3>
-                <p>Brief description of the second tool feature.</p>
-            </div>
-            <div class="showcase-item">
-                <img src="images/tool3.png" alt="Tool Showcase 3"/>
-                <h3>Feature Three</h3>
-                <p>Brief description of the third tool feature.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="section3" class="version-list scroll-section">
-        <h3>Previous Versions</h3>
-        <div class="version-item">
-            <h4>Version 0.1</h4>
-            <a class="button" onclick="javascript: window.open('https://realgekkefries.github.io/0xRaider/');">
-                <i class="fa-solid fa-download"></i> Download
-            </a>
-        </div>
-        <div class="version-item">
-            <h4>Version 0.2</h4>
-            <a class="button" onclick="javascript: window.open('https://realgekkefries.github.io/0xRaider/');">
-                <i class="fa-solid fa-download"></i> Download
-            </a>
-        </div>
-    </section>
-
+    </div>
     <script>
-        // Change active nav link on scroll
-        const sections = document.querySelectorAll('.scroll-section');
-        const navLinks = document.querySelectorAll('.nav-link');
-        
-        window.addEventListener('scroll', () => {
-            let current = '';
+        const canvas = document.getElementById('stars');
+        const ctx = canvas.getContext('2d');
+        let stars = [];
+        function resizeCanvas() { 
+            canvas.width = window.innerWidth; 
+            canvas.height = window.innerHeight; 
+        }
+        resizeCanvas();
+        // Generate stars
+        for (let i = 0; i < 100; i++) {
+            stars.push({
+                x: Math.random() * canvas.width, 
+                y: Math.random() * canvas.height, 
+                radius: Math.random() * 2, 
+                speed: Math.random() * 2 + 0.5, 
+                opacity: Math.random()
+            });
+        }
+        // Animate stars
+        function animateStars() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < stars.length; i++) {
+                const star = stars[i];
+                star.y -= star.speed;
+                // Reset star position when it goes off screen
+                if (star.y < 0) {
+                    star.y = canvas.height;
+                    star.x = Math.random() * canvas.width;
+                }
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`;
+                ctx.fill();
+            }
+            requestAnimationFrame(animateStars);
+        }
+        animateStars();
+        window.addEventListener('resize', resizeCanvas);
+        // Section Animation on Scroll
+        const sections = document.querySelectorAll('section');
+        function checkSections() {
+            const triggerBottom = window.innerHeight / 5 * 4;
             sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                if (pageYOffset >= sectionTop - 50) {
-                    current = section.getAttribute('id');
+                const sectionTop = section.getBoundingClientRect().top;
+                if(sectionTop < triggerBottom) {
+                    section.classList.add('in-view');
+                } else {
+                    section.classList.remove('in-view');
                 }
             });
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').includes(current)) {
-                    link.classList.add('active');
-                }
-            });
-        });
+        }
+        window.addEventListener('scroll', checkSections);
+        checkSections(); // Initial check
     </script>
 </body>
 </html>
