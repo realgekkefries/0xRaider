@@ -35,18 +35,14 @@
         #stars { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
         
         /* New Tool Showcase Section */
-        .showcase-section { width: 100%; height: 100vh; background-color: #222; display: flex; justify-content: center; align-items: center; padding: 40px 20px; }
+        .showcase-section { width: 100%; height: auto; background-color: #222; display: flex; justify-content: center; align-items: center; padding: 40px 20px; }
         .showcase-grid { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; max-width: 1200px; width: 100%; }
-        .showcase-item { width: 70%; margin: 20px; /* Add margin for spacing */ text-align: center; }
+        .showcase-item { width: 30%; margin: 20px; text-align: center; }
         .showcase-item img { width: 100%; height: auto; border-radius: 10px; box-shadow: 0 0 20px rgba(128, 0, 128, 0.7); transition: transform 0.3s ease; }
         .showcase-item img:hover { transform: scale(1.1); } /* Slightly increase scale on hover */
         .showcase-item h3 { margin-top: 15px; font-size: 1.5rem; color: #fff; }
         .showcase-item p { color: #aaa; font-size: 1.1rem; }
-        
-        /* Showcase Layout Adjustments */
-        .showcase-item:nth-child(1) { order: 1; } /* Top left */
-        .showcase-item:nth-child(2) { order: 2; /* Middle right */ margin-left: auto; margin-right: 20px; }
-        .showcase-item:nth-child(3) { order: 3; margin-top: auto; /* Bottom left */ }
+        .showcase-item .button { margin-top: 10px; } /* Margin for buttons */
         
         /* Responsive Adjustments */
         @media (max-width: 768px) {
@@ -54,17 +50,7 @@
         }
 
         /* Version List Styles */
-        .version-list { 
-            padding: 40px 20px; 
-            background-color: #111; 
-            height: 100vh; 
-            display: flex; 
-            flex-direction: column; 
-            justify-content: center; 
-            align-items: center; 
-            position: relative; /* Ensures this section is above others */
-            z-index: 10; /* Higher z-index to ensure clickability */
-        }
+        .version-list { padding: 40px 20px; background-color: #111; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; }
         .version-list h3 { text-align: center; font-size: 2rem; margin-bottom: 20px; color: #ff00ff; }
         .version-item { display: flex; justify-content: space-between; align-items: center; max-width: 800px; width: 100%; margin: 10px 0; padding: 10px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
         .version-item:last-child { border-bottom: none; }
@@ -83,87 +69,97 @@
                 <h2>0x Raider</h2>
                 <p>Your ultimate tool for managing your crypto portfolio.</p>
                 <div class="buttons">
-                    <a class="button" onclick="javascript: window.open('https://example.com/download', '_blank')">Download</a>
-                    <a class="button" onclick="javascript: window.open('https://example.com/about', '_blank')">About Us</a>
+                    <a class="button" onclick="javascript: window.open('downloads/latest-version.zip');" style="cursor: pointer;">
+                        <i class="fa-solid fa-download" style="margin-right: 6px;"></i>
+                        Download Latest Version
+                    </a>
+                    <a class="button" onclick="javascript: window.open('https://discord.gg/eqNCeB4rEB');" style="cursor: pointer;">
+                        <i class="fa-brands fa-github" style="margin-right: 6px;"></i>
+                        GitHub
+                    </a>
                 </div>
             </div>
             <div class="screenshot-container">
-                <img src="resources/screenshot.png" alt="Screenshot of 0x Raider" class="screenshot"/>
+                <img class="screenshot" draggable="false" src="resources/0xraider-screenshot.png" alt="0x Raider Screenshot" />
             </div>
         </div>
     </main>
 
     <!-- Showcase Section -->
-    <section class="showcase-section">
+    <div class="showcase-section">
         <div class="showcase-grid">
             <div class="showcase-item">
                 <img src="resources/tool1.png" alt="Tool 1"/>
                 <h3>Tool 1</h3>
                 <p>Short description of Tool 1.</p>
+                <a class="button" onclick="javascript: window.open('tool1-link');" style="cursor: pointer;">Learn More</a>
             </div>
             <div class="showcase-item">
                 <img src="resources/tool2.png" alt="Tool 2"/>
                 <h3>Tool 2</h3>
                 <p>Short description of Tool 2.</p>
+                <a class="button" onclick="javascript: window.open('tool2-link');" style="cursor: pointer;">Learn More</a>
             </div>
             <div class="showcase-item">
                 <img src="resources/tool3.png" alt="Tool 3"/>
                 <h3>Tool 3</h3>
                 <p>Short description of Tool 3.</p>
+                <a class="button" onclick="javascript: window.open('tool3-link');" style="cursor: pointer;">Learn More</a>
             </div>
+            <!-- Add more tools as needed -->
         </div>
-    </section>
+    </div>
 
     <!-- Version List Section -->
-    <section class="version-list">
-        <h3>Versions</h3>
+    <div class="version-list">
+        <h3>Latest Versions</h3>
         <div class="version-item">
-            <h4>Version 1.0</h4>
-            <a href="https://example.com/version1" target="_blank">Download</a>
+            <h4>Version 1.0.0</h4>
+            <a href="downloads/version1.0.0.zip">Download</a>
         </div>
         <div class="version-item">
-            <h4>Version 1.1</h4>
-            <a href="https://example.com/version2" target="_blank">Download</a>
+            <h4>Version 0.9.0</h4>
+            <a href="downloads/version0.9.0.zip">Download</a>
         </div>
         <div class="version-item">
-            <h4>Version 1.2</h4>
-            <a href="https://example.com/version3" target="_blank">Download</a>
+            <h4>Version 0.8.0</h4>
+            <a href="downloads/version0.8.0.zip">Download</a>
         </div>
-    </section>
+    </div>
 
     <script>
-        // JavaScript for star field effect
-        const canvas = document.getElementById('stars');
-        const ctx = canvas.getContext('2d');
-
-        canvas.width = window.innerWidth;
+        // JavaScript for the stars background effect
+        const canvas = document.getElementById("stars");
+        const ctx = canvas.getContext("2d");
         canvas.height = window.innerHeight;
+        canvas.width = window.innerWidth;
 
-        let stars = [];
-
-        for (let i = 0; i < 1000; i++) {
+        const stars = [];
+        for (let i = 0; i < 200; i++) {
             stars.push({
                 x: Math.random() * canvas.width,
                 y: Math.random() * canvas.height,
-                radius: Math.random() * 1.5,
-                opacity: Math.random()
+                radius: Math.random() * 2,
+                alpha: Math.random(),
             });
         }
 
-        function draw() {
+        function drawStars() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-            stars.forEach(star => {
+            stars.forEach((star) => {
                 ctx.beginPath();
-                ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`;
+                ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2, false);
+                ctx.fillStyle = `rgba(255, 255, 255, ${star.alpha})`;
                 ctx.fill();
             });
-
-            requestAnimationFrame(draw);
         }
 
-        draw();
+        function animateStars() {
+            drawStars();
+            requestAnimationFrame(animateStars);
+        }
+
+        animateStars();
     </script>
 </body>
 </html>
