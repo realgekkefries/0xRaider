@@ -11,7 +11,7 @@
     <link href="resources/litecoin.png" rel="icon" sizes="166x166" type="image/png"/>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"/>
     <style>
-        body {
+        body { 
             font-family: Arial, sans-serif; 
             margin: 0; 
             padding: 0; 
@@ -31,163 +31,311 @@
             justify-content: space-between; 
             align-items: center; 
         }
-        .logo h1 { margin: 0; }
-        nav ul { list-style: none; padding: 0; margin: 0; display: flex; }
-        nav ul li { margin-left: 40px; }
-        nav ul li a { color: #fff; text-decoration: none; padding: 5px 10px; border: 1px solid transparent; transition: all 0.3s ease; }
-        nav ul li a:hover { border: 1px solid #fff; border-radius: 5px; }
-        nav ul li a i { margin-right: 5px; }
-        main { padding: 20px; display: flex; justify-content: center; align-items: center; min-height: 100vh; position: relative; z-index: 1; }
-        .main-content { display: flex; justify-content: space-between; align-items: flex-start; max-width: 1200px; width: 100%; margin-top: -50px; }
-        .left-content { flex: 1; text-align: left; margin-right: 225px; }
-        .left-content h2 { font-size: 2.5rem; background-image: linear-gradient(120deg, #8a2be2, #ff00ff); -webkit-background-clip: text; background-clip: text; color: transparent; text-shadow: 0 0 5px rgba(137, 43, 226, 0.719); margin-bottom: 10px; }
-        .left-content p { font-size: 1.25rem; }
-        .buttons { margin-top: 20px; }
-        .button { display: inline-block; padding: 10px 20px; background-color: #333; color: #fff; text-decoration: none; border: 1px solid transparent; border-radius: 5px; transition: background-color 0.3s ease, transform 0.2s ease; margin-right: 10px; }
-        .button:hover { background-color: #555; transform: scale(1.05); box-shadow: 0 0 10px rgba(255, 255, 255, 0.2); }
-        .screenshot-container { display: flex; justify-content: flex-end; align-items: center; height: 25vh; margin: 20px -275px; padding-right: 10%; }
-        .screenshot { width: 100%; max-width: 800px; box-shadow: 0 0 20px 10px rgba(128, 0, 128, 0.7); margin-top: 6vh; animation: start 1s ease-in-out 0s 1, float 3s ease-in-out infinite 1s, glow 3s ease-in-out infinite 1s; }
-        @keyframes start { 0% { transform: perspective(1000px) rotateY(0deg); box-shadow: 0 0 20px 10px rgba(128, 0, 128, 0.7); } 100% { transform: perspective(1000px) rotateY(-30deg); box-shadow: 0 0 20px 10px rgba(128, 0, 128, 0.7); } }
-        @keyframes float { 0%, 100% { transform: translateY(0) perspective(1000px) rotateY(-30deg); } 50% { transform: translateY(-20px) perspective(1000px) rotateY(-30deg); } }
-        @keyframes glow { 0%, 100% { box-shadow: 0 0 20px 10px rgba(128, 0, 128, 0.7); } 50% { box-shadow: 0 0 30px 15px rgba(128, 0, 128, 1); } }
+        .logo h1 { 
+            margin: 0; 
+        }
+        nav ul { 
+            list-style: none; 
+            padding: 0; 
+            margin: 0; 
+            display: flex; 
+        }
+        nav ul li { 
+            margin-left: 40px; 
+        }
+        nav ul li a { 
+            color: #fff; 
+            text-decoration: none; 
+            padding: 5px 10px; 
+            border: 1px solid transparent; 
+            transition: all 0.3s ease; 
+        }
+        nav ul li a:hover { 
+            border: 1px solid #fff; 
+            border-radius: 5px; 
+        }
+        nav ul li a i { 
+            margin-right: 5px; 
+        }
+        main { 
+            padding: 20px; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            min-height: 100vh; 
+            position: relative; 
+            z-index: 1; 
+        }
+        .main-content { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: flex-start; 
+            max-width: 1200px; 
+            width: 100%; 
+            margin-top: -50px; 
+        }
+        .left-content { 
+            flex: 1; 
+            text-align: left; 
+            margin-right: 225px; 
+        }
+        .left-content h2 { 
+            font-size: 2.5rem; 
+            background-image: linear-gradient(120deg, #8a2be2, #ff00ff); 
+            -webkit-background-clip: text; 
+            background-clip: text; 
+            color: transparent; 
+            text-shadow: 0 0 5px rgba(137, 43, 226, 0.719); 
+            margin-bottom: 10px; 
+        }
+        .left-content p { 
+            font-size: 1.25rem; 
+        }
+        .buttons { 
+            margin-top: 20px; 
+        }
+        .button { 
+            display: inline-block; 
+            padding: 10px 20px; 
+            background-color: #333; 
+            color: #fff; 
+            text-decoration: none; 
+            border: 1px solid transparent; 
+            border-radius: 5px; 
+            transition: background-color 0.3s ease, transform 0.2s ease; 
+            margin-right: 10px; 
+            cursor: pointer; /* Ensure pointer cursor on hover */
+        }
+        .button:hover { 
+            background-color: #555; 
+            transform: scale(1.05); 
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2); 
+        }
+        .screenshot-container { 
+            display: flex; 
+            justify-content: flex-end; 
+            align-items: center; 
+            height: 25vh; 
+            margin: 20px -275px; 
+            padding-right: 10%; 
+        }
+        .screenshot { 
+            width: 100%; 
+            max-width: 800px; 
+            box-shadow: 0 0 20px 10px rgba(128, 0, 128, 0.7); 
+            margin-top: 6vh; 
+            animation: start 1s ease-in-out 0s 1, float 3s ease-in-out infinite 1s, glow 3s ease-in-out infinite 1s; 
+        }
+        @keyframes start { 
+            0% { 
+                transform: perspective(1000px) rotateY(0deg); 
+                box-shadow: 0 0 20px 10px rgba(128, 0, 128, 0.7); 
+            } 
+            100% { 
+                transform: perspective(1000px) rotateY(-30deg); 
+                box-shadow: 0 0 20px 10px rgba(128, 0, 128, 0.7); 
+            } 
+        }
+        @keyframes float { 
+            0%, 100% { 
+                transform: translateY(0) perspective(1000px) rotateY(-30deg); 
+            } 
+            50% { 
+                transform: translateY(-20px) perspective(1000px) rotateY(-30deg); 
+            } 
+        }
+        @keyframes glow { 
+            0%, 100% { 
+                box-shadow: 0 0 20px 10px rgba(128, 0, 128, 0.7); 
+            } 
+            50% { 
+                box-shadow: 0 0 30px 15px rgba(128, 0, 128, 1); 
+            } 
+        }
         #stars { 
-            position: fixed; /* Keep it fixed */
+            position: fixed; 
             top: 0; 
             left: 0; 
             width: 100%; 
             height: 100%; 
-            z-index: -1; /* Lower z-index so it's behind the buttons */
+            z-index: 0; 
         }
-
+        
         /* New Tool Showcase Section */
-        .showcase-section { width: 100%; height: 100vh; background-color: #222; display: flex; justify-content: center; align-items: center; padding: 40px 20px; }
-        .showcase-grid { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; max-width: 1200px; width: 100%; }
-        .showcase-item { width: 70%; margin: 20px; /* Add margin for spacing */ text-align: center; }
-        .showcase-item img { width: 100%; height: auto; border-radius: 10px; box-shadow: 0 0 20px rgba(128, 0, 128, 0.7); transition: transform 0.3s ease; }
-        .showcase-item img:hover { transform: scale(1.1); } /* Slightly increase scale on hover */
-        .showcase-item h3 { margin-top: 15px; font-size: 1.5rem; color: #fff; }
-        .showcase-item p { color: #aaa; font-size: 1.1rem; }
+        .showcase-section { 
+            width: 100%; 
+            height: 100vh; 
+            background-color: #222; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            padding: 40px 20px; 
+        }
+        .showcase-grid { 
+            display: flex; 
+            flex-wrap: wrap; 
+            justify-content: space-between; 
+            align-items: flex-start; 
+            max-width: 1200px; 
+            width: 100%; 
+        }
+        .showcase-item { 
+            width: 70%; 
+            margin: 20px; 
+            text-align: center; 
+        }
+        .showcase-item img { 
+            width: 100%; 
+            height: auto; 
+            border-radius: 10px; 
+            box-shadow: 0 0 20px rgba(128, 0, 128, 0.7); 
+            transition: transform 0.3s ease; 
+        }
+        .showcase-item img:hover { 
+            transform: scale(1.1); 
+        }
+        .showcase-item h3 { 
+            margin-top: 15px; 
+            font-size: 1.5rem; 
+            color: #fff; 
+        }
+        .showcase-item p { 
+            color: #aaa; 
+            font-size: 1.1rem; 
+        }
         
         /* Showcase Layout Adjustments */
-        .showcase-item:nth-child(1) { order: 1; } /* Top left */
-        .showcase-item:nth-child(2) { order: 2; /* Middle right */ margin-left: auto; margin-right: 20px; }
-        .showcase-item:nth-child(3) { order: 3; margin-top: auto; /* Bottom left */ }
+        .showcase-item:nth-child(1) { order: 1; }
+        .showcase-item:nth-child(2) { order: 2; margin-left: auto; margin-right: 20px; }
+        .showcase-item:nth-child(3) { order: 3; margin-top: auto; }
         
         /* Responsive Adjustments */
         @media (max-width: 768px) {
-            .showcase-item { width: 100%; }
+            .showcase-item { 
+                width: 100%; 
+            }
         }
 
         /* Version List Styles */
-        .version-list { padding: 40px 20px; background-color: #111; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; }
-        .version-list h3 { text-align: center; font-size: 2rem; margin-bottom: 20px; color: #ff00ff; }
-        .version-item { display: flex; justify-content: space-between; align-items: center; max-width: 800px; width: 100%; margin: 10px 0; padding: 10px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
-        .version-item:last-child { border-bottom: none; }
-        .version-item h4 { margin: 0; color: #fff; flex: 1; }
-        .version-item a { display: inline-block; padding: 10px 15px; background-color: #333; color: #fff; border-radius: 5px; text-decoration: none; transition: background-color 0.3s ease; }
-        .version-item a:hover { background-color: #555; }
+        .version-list { 
+            padding: 40px 20px; 
+            background-color: #111; 
+            height: 100vh; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+        }
+        .version-list h3 { 
+            text-align: center; 
+            font-size: 2rem; 
+            margin-bottom: 20px; 
+            color: #ff00ff; 
+        }
+        .version-item { 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            margin: 10px 0; 
+            transition: background-color 0.3s ease; 
+            width: 100%; 
+            max-width: 500px; 
+            border-radius: 5px; 
+        }
+        .version-item:hover { 
+            background-color: #333; 
+            cursor: pointer; 
+        }
+        .version-button { 
+            display: inline-block; 
+            padding: 8px 15px; 
+            background-color: #666; 
+            color: #fff; 
+            text-decoration: none; 
+            border-radius: 5px; 
+            transition: background-color 0.3s ease, transform 0.2s ease; 
+            margin-left: 10px; 
+        }
+        .version-button:hover { 
+            background-color: #888; 
+            transform: scale(1.05); 
+        }
     </style>
 </head>
 <body>
-    <canvas id="stars"></canvas>
-    <header>
-        <div class="container">
-            <div class="logo">
-                <h1>0x Raider</h1>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
-                    <li><a href="#"><i class="fas fa-info-circle"></i> About</a></li>
-                    <li><a href="#"><i class="fas fa-tools"></i> Tools</a></li>
-                    <li><a href="#"><i class="fas fa-address-book"></i> Contact</a></li>
-                </ul>
-            </nav>
+    <div id="stars"></div>
+    <header class="container">
+        <div class="logo">
+            <h1>0x Raider</h1>
         </div>
+        <nav>
+            <ul>
+                <li><a href="#showcase">Showcase</a></li>
+                <li><a href="#versions">Versions</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
     </header>
     <main>
         <div class="main-content">
             <div class="left-content">
                 <h2>Welcome to 0x Raider</h2>
-                <p>Your one-stop solution for blockchain tools and resources.</p>
+                <p>Your gateway to high-quality tools for the cryptocurrency world.</p>
                 <div class="buttons">
-                    <a href="#" class="button">Get Started</a>
-                    <a href="#" class="button">Learn More</a>
+                    <a class="button" href="#showcase">View Showcase</a>
+                    <a class="button" href="#versions">See Versions</a>
                 </div>
             </div>
             <div class="screenshot-container">
-                <img src="screenshot.png" alt="Screenshot" class="screenshot"/>
+                <img src="resources/screenshot.png" alt="Screenshot" class="screenshot"/>
             </div>
         </div>
     </main>
-    <section class="showcase-section">
+    
+    <!-- Showcase Section -->
+    <section class="showcase-section" id="showcase">
+        <h2>Featured Tools</h2>
         <div class="showcase-grid">
             <div class="showcase-item">
-                <img src="tool1.png" alt="Tool 1"/>
+                <img src="resources/tool1.png" alt="Tool 1"/>
                 <h3>Tool 1</h3>
-                <p>Description of Tool 1</p>
+                <p>Description of Tool 1.</p>
             </div>
             <div class="showcase-item">
-                <img src="tool2.png" alt="Tool 2"/>
+                <img src="resources/tool2.png" alt="Tool 2"/>
                 <h3>Tool 2</h3>
-                <p>Description of Tool 2</p>
+                <p>Description of Tool 2.</p>
             </div>
             <div class="showcase-item">
-                <img src="tool3.png" alt="Tool 3"/>
+                <img src="resources/tool3.png" alt="Tool 3"/>
                 <h3>Tool 3</h3>
-                <p>Description of Tool 3</p>
+                <p>Description of Tool 3.</p>
             </div>
         </div>
     </section>
-    <section class="version-list">
-        <h3>Available Versions</h3>
+    
+    <!-- Previous Versions Section -->
+    <section class="version-list" id="versions">
+        <h3>Previous Versions</h3>
         <div class="version-item">
-            <h4>Version 1.0</h4>
-            <a href="#">Download</a>
+            <span>Version 1.0</span>
+            <a href="#" class="version-button">Download</a>
         </div>
         <div class="version-item">
-            <h4>Version 2.0</h4>
-            <a href="#">Download</a>
+            <span>Version 1.1</span>
+            <a href="#" class="version-button">Download</a>
         </div>
         <div class="version-item">
-            <h4>Version 3.0</h4>
-            <a href="#">Download</a>
+            <span>Version 1.2</span>
+            <a href="#" class="version-button">Download</a>
         </div>
     </section>
-    <script>
-        // Stars background effect
-        const canvas = document.getElementById("stars");
-        const ctx = canvas.getContext("2d");
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
 
-        const stars = [];
-        for (let i = 0; i < 200; i++) {
-            stars.push({
-                x: Math.random() * canvas.width,
-                y: Math.random() * canvas.height,
-                radius: Math.random() * 1.5,
-                alpha: Math.random() * 1
-            });
-        }
-
-        function draw() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            stars.forEach(star => {
-                ctx.beginPath();
-                ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(255, 255, 255, ${star.alpha})`;
-                ctx.fill();
-            });
-            requestAnimationFrame(draw);
-        }
-
-        draw();
-        window.addEventListener("resize", () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        });
-    </script>
+    <footer class="footer" id="contact">
+        <div class="container">
+            <p>Contact us at: <a href="mailto:support@0xraider.com">support@0xraider.com</a></p>
+        </div>
+    </footer>
 </body>
 </html>
 
