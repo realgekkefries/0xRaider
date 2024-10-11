@@ -11,302 +11,195 @@
     <link href="resources/litecoin.png" rel="icon" sizes="166x166" type="image/png"/>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"/>
     <style>
-        body { 
-            font-family: Arial, sans-serif; 
-            margin: 0; 
-            padding: 0; 
-            box-sizing: border-box; 
-            background: linear-gradient(120deg, #000000, #000000, #000000); 
-            color: #fff; 
-            overflow-x: hidden; 
-            user-select: none; 
-            -ms-overflow-style: none; 
-            scrollbar-width: none; 
-            position: relative; 
-        }
-        #sidebar {
+        /* ... existing styles ... */
+
+        /* New Navigation Bar */
+        .navigation-bar {
             position: fixed;
-            left: 20px;
-            top: 20px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            padding: 10px;
-            z-index: 1000;
-            width: 150px;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
         }
-        #sidebar h4 {
+        .navigation-bar ul {
+            list-style-type: none;
+            padding: 0;
             margin: 0;
-            font-size: 1.5rem;
-            color: #ff00ff;
-            text-align: center;
+            display: flex;
+            justify-content: space-around;
+            width: 80%;
         }
-        #sidebar a {
-            display: block;
-            padding: 10px;
-            color: #fff;
+        .navigation-bar li {
+            cursor: pointer;
+        }
+        .navigation-bar a {
+            color: white;
             text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-            margin: 5px 0;
+            font-weight: bold;
         }
-        #sidebar a:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-        }
-        .active {
-            background-color: rgba(255, 255, 255, 0.3);
-        }
-        .container { 
-            width: 90%; 
-            margin: 0 auto; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-        }
-        .logo h1 { margin: 0; }
-        nav ul { list-style: none; padding: 0; margin: 0; display: flex; }
-        nav ul li { margin-left: 40px; }
-        nav ul li a { color: #fff; text-decoration: none; padding: 5px 10px; border: 1px solid transparent; transition: all 0.3s ease; }
-        nav ul li a:hover { border: 1px solid #fff; border-radius: 5px; }
-        nav ul li a i { margin-right: 5px; }
-        main { 
-            padding: 20px; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            min-height: 100vh; 
-            position: relative; 
-            z-index: 1; 
-        }
-        .main-content { 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: flex-start; 
-            max-width: 1200px; 
-            width: 100%; 
-            margin-top: -50px; 
-        }
-        .left-content { 
-            flex: 1; 
-            text-align: left; 
-            margin-right: 225px; 
-        }
-        .left-content h2 { 
-            font-size: 2.5rem; 
-            background-image: linear-gradient(120deg, #8a2be2, #ff00ff); 
-            -webkit-background-clip: text; 
-            background-clip: text; 
-            color: transparent; 
-            text-shadow: 0 0 5px rgba(137, 43, 226, 0.719); 
-            margin-bottom: 10px; 
-        }
-        .left-content p { font-size: 1.25rem; }
-        .buttons { margin-top: 20px; }
-        .button { 
-            display: inline-block; 
-            padding: 10px 20px; 
-            background-color: #333; 
-            color: #fff; 
-            text-decoration: none; 
-            border: 1px solid transparent; 
-            border-radius: 5px; 
-            transition: background-color 0.3s ease, transform 0.2s ease; 
-            margin-right: 10px; 
-        }
-        .button:hover { 
-            background-color: #555; 
-            transform: scale(1.05); 
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2); 
-        }
-        .screenshot-container { 
-            display: flex; 
-            justify-content: flex-end; 
-            align-items: center; 
-            height: 25vh; 
-            margin: 20px -275px; 
-            padding-right: 10%; 
-        }
-        .screenshot { 
-            width: 100%; 
-            max-width: 800px; 
-            box-shadow: 0 0 20px 10px rgba(128, 0, 128, 0.7); 
-            margin-top: 6vh; 
-            animation: start 1s ease-in-out 0s 1, float 3s ease-in-out infinite 1s, glow 3s ease-in-out infinite 1s; 
-        }
-        @keyframes start { 
-            0% { transform: perspective(1000px) rotateY(0deg); box-shadow: 0 0 20px 10px rgba(128, 0, 128, 0.7); } 
-            100% { transform: perspective(1000px) rotateY(-30deg); box-shadow: 0 0 20px 10px rgba(128, 0, 128, 0.7); } 
-        }
-        @keyframes float { 
-            0%, 100% { transform: translateY(0) perspective(1000px) rotateY(-30deg); } 
-            50% { transform: translateY(-20px) perspective(1000px) rotateY(-30deg); } 
-        }
-        @keyframes glow { 
-            0%, 100% { box-shadow: 0 0 20px 10px rgba(128, 0, 128, 0.7); } 
-            50% { box-shadow: 0 0 30px 15px rgba(128, 0, 128, 1); } 
-        }
-        #stars { 
-            position: fixed; 
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 100%; 
-            z-index: 0; 
+        .active-link {
+            color: #ff00ff;
         }
 
-        /* New Tool Showcase Section */
-        .showcase-section { 
-            width: 100%; 
-            height: 100vh; 
-            background-color: #222; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            padding: 40px 20px; 
+        /* Smooth Scrolling */
+        .smooth-scroll {
+            scroll-behavior: smooth;
         }
-        .showcase-grid { 
-            display: flex; 
-            flex-wrap: wrap; 
-            justify-content: space-between; 
-            align-items: flex-start; 
-            max-width: 1200px; 
-            width: 100%; 
+
+        /* Sections */
+        .home-section,
+        .showcase-section,
+        .version-list-section {
+            padding: 40px 20px;
+            background-color: #111;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
-        .showcase-item { 
-            width: 70%; 
-            margin: 20px; 
-            text-align: center; 
+        .home-section {
+            background-color: #222;
         }
-        .showcase-item img { 
-            width: 100%; 
-            height: auto; 
-            border-radius: 10px; 
-            box-shadow: 0 0 20px rgba(128, 0, 128, 0.7); 
-            transition: transform 0.3s ease; 
+        .showcase-section {
+            background-color: #333;
         }
-        .showcase-item img:hover { transform: scale(1.1); } /* Slightly increase scale on hover */
-        .showcase-item h3 { margin-top: 15px; font-size: 1.5rem; color: #fff; }
-        .showcase-item p { color: #aaa; font-size: 1.1rem; }
-        
-        /* Showcase Layout Adjustments */
-        .showcase-item:nth-child(1) { order: 1; } /* Top left */
-        .showcase-item:nth-child(2) { order: 2; /* Middle right */ margin-left: auto; margin-right: 20px; }
-        .showcase-item:nth-child(3) { order: 3; margin-top: 20px; } /* Bottom left */
-        .showcase-item:nth-child(4) { order: 4; margin-top: 20px; /* Bottom right */ margin-left: auto; }
-        .footer { text-align: center; padding: 20px; background: #333; position: relative; z-index: 1000; }
-        .footer p { margin: 0; color: #fff; }
-        @media screen and (max-width: 768px) {
-            #sidebar { display: none; }
-            .left-content { margin-right: 0; }
-            .showcase-item { width: 100%; }
+        .version-list-section {
+            background-color: #444;
         }
     </style>
 </head>
 <body>
-    <div id="stars"></div>
-    <div id="sidebar">
-        <h4>Sections</h4>
-        <a href="#tools">Tools</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-    </div>
-    <div class="container">
-        <div class="logo"><h1>0x Raider</h1></div>
-        <nav>
-            <ul>
-                <li><a href="#about"><i class="fas fa-info-circle"></i> About</a></li>
-                <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
-                <li><a href="#tools"><i class="fas fa-tools"></i> Tools</a></li>
-            </ul>
-        </nav>
-    </div>
-    <main>
-        <div class="main-content">
-            <div class="left-content">
-                <h2>Welcome to 0x Raider</h2>
-                <p>Your go-to platform for crypto tools and resources. Explore our range of utilities designed to empower your trading and investment journey.</p>
-                <div class="buttons">
-                    <a class="button" href="#tools">Explore Tools</a>
-                    <a class="button" href="#about">Learn More</a>
-                </div>
-                <div class="screenshot-container">
-                    <img class="screenshot" src="resources/screenshot.png" alt="Screenshot of 0x Raider"/>
-                </div>
-            </div>
+    <canvas id="stars"></canvas>
+
+    <!-- Navigation Bar -->
+    <nav class="navigation-bar">
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#showcase">Showcase</a></li>
+            <li><a href="#version-list">Version List</a></li>
+        </ul>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home" class="home-section">
+        <h2>0x Raider</h2>
+        <p>Your ultimate tool for managing your crypto portfolio.</p>
+        <div class="buttons">
+            <a class="button" onclick="javascript: window.open('downloads/latest-version.zip');" style="cursor: pointer;">
+                <i class="fa-solid fa-download" style="margin-right: 6px;"></i>
+                Download Latest Version
+            </a>
+            <a class="button" onclick="javascript: window.open('https://discord.gg/eqNCeB4rEB');" style="cursor: pointer;">
+                <i class="fa-brands fa-github" style="margin-right: 6px;"></i>
+                GitHub
+            </a>
         </div>
-    </main>
-    
+    </section>
+
     <!-- Showcase Section -->
-    <div id="tools" class="showcase-section">
+    <section id="showcase" class="showcase-section">
+        <h2>Features</h2>
         <div class="showcase-grid">
             <div class="showcase-item">
-                <img src="resources/tool1.png" alt="Tool 1"/>
-                <h3>Tool 1</h3>
-                <p>Tool 1 description goes here.</p>
+                <img src="images/tool1.png" alt="Tool Showcase 1"/>
+                <h3>Feature One</h3>
+                <p>Brief description of the first tool feature.</p>
             </div>
             <div class="showcase-item">
-                <img src="resources/tool2.png" alt="Tool 2"/>
-                <h3>Tool 2</h3>
-                <p>Tool 2 description goes here.</p>
+                <img src="images/tool2.png" alt="Tool Showcase 2"/>
+                <h3>Feature Two</h3>
+                <p>Brief description of the second tool feature.</p>
             </div>
             <div class="showcase-item">
-                <img src="resources/tool3.png" alt="Tool 3"/>
-                <h3>Tool 3</h3>
-                <p>Tool 3 description goes here.</p>
-            </div>
-            <div class="showcase-item">
-                <img src="resources/tool4.png" alt="Tool 4"/>
-                <h3>Tool 4</h3>
-                <p>Tool 4 description goes here.</p>
+                <img src="images/tool3.png" alt="Tool Showcase 3"/>
+                <h3>Feature Three</h3>
+                <p>Brief description of the third tool feature.</p>
             </div>
         </div>
-    </div>
-
-    <section id="about">
-        <h2>About Us</h2>
-        <p>We are dedicated to providing high-quality tools for crypto traders and investors. Our platform is user-friendly and packed with features to help you make informed decisions.</p>
-    </section>
-    
-    <section id="contact">
-        <h2>Contact Us</h2>
-        <p>If you have any questions, feel free to reach out to us!</p>
     </section>
 
-    <div class="footer">
-        <p>&copy; 2024 0x Raider. All Rights Reserved.</p>
-    </div>
+    <!-- Version List Section -->
+    <section id="version-list" class="version-list-section">
+        <h2>Previous Versions</h2>
+        <div class="version-item">
+            <h4>Version 0.1</h4>
+            <a class="button" onclick="javascript: window.open('https://realgekkefries.github.io/0xRaider/');" style="cursor: pointer; position: relative; z-index: 1;">
+                <i class="fa-solid fa-download" style="margin-right: 6px;"></i>Download
+            </a>
+        </div>
+        <div class="version-item">
+            <h4>Version 0.2</h4>
+            <a class="button" onclick="javascript: window.open('https://realgekkefries.github.io/0xRaider/');" style="cursor: pointer; position: relative; z-index: 1;">
+                <i class="fa-solid fa-download" style="margin-right: 6px;"></i>Download
+            </a>
+        </div>
+        <!-- Add more versions as needed -->
+    </section>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const sections = document.querySelectorAll('section, .showcase-section');
-            const sidebarLinks = document.querySelectorAll('#sidebar a');
+        const canvas = document.getElementById('stars');
+        const ctx = canvas.getContext('2d');
+        let stars = [];
 
-            function changeActiveSection() {
-                let scrollPosition = document.documentElement.scrollTop || document.body.scrollTop;
+        function resizeCanvas() { 
+            canvas.width = window.innerWidth; 
+            canvas.height = window.innerHeight; 
+        }
 
-                sections.forEach((section, index) => {
-                    const sectionTop = section.offsetTop;
-                    const sectionHeight = section.offsetHeight;
+        resizeCanvas();
 
-                    if (scrollPosition >= sectionTop - 50 && scrollPosition < sectionTop + sectionHeight) {
-                        sidebarLinks.forEach(link => link.classList.remove('active'));
-                        sidebarLinks[index].classList.add('active');
-                    }
-                });
+        // Generate stars
+        for (let i = 0; i < 100; i++) {
+            stars.push({
+                x: Math.random() * canvas.width, 
+                y: Math.random() * canvas.height, 
+                radius: Math.random() * 2, 
+                speed: Math.random() * 2 + 0.5, 
+                opacity: Math.random()
+            });
+        }
+
+        // Animate stars
+        function animateStars() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < stars.length; i++) {
+                const star = stars[i];
+                star.y -= star.speed;
+
+                // Reset star position when it goes off screen
+                if (star.y < 0) {
+                    star.y = canvas.height;
+                    star.x = Math.random() * canvas.width;
+                }
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`;
+                ctx.fill();
             }
+            requestAnimationFrame(animateStars);
+        }
 
-            window.addEventListener('scroll', changeActiveSection);
+        animateStars();
+        window.addEventListener('resize', resizeCanvas);
 
-            sidebarLinks.forEach(link => {
-                link.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href');
-                    const targetPosition = document.querySelector(targetId).offsetTop;
+        // Smooth Scrolling Functionality
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
 
-                    window.scrollTo({
-                        top: targetPosition - 50,
-                        behavior: 'smooth'
-                    });
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
                 });
+
+                // Update active link
+                document.body.classList.remove('active-link');
+                this.classList.add('active-link');
             });
         });
     </script>
