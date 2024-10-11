@@ -23,80 +23,59 @@
             -ms-overflow-style: none; 
             scrollbar-width: none; 
             position: relative; 
+            overflow-y: scroll; 
         }
-        /* Page Container */
-        .page-container {
-            display: flex;
+
+        #stars { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            z-index: 0; 
         }
-        /* Sidebar Styles */
+
         .sidebar {
-            width: 250px;
-            background-color: #111;
-            color: #fff;
-            min-height: 100vh;
-            position: fixed;
-            top: 0;
-            left: 0;
-            padding-top: 20px;
-            z-index: 100;
-            overflow-y: auto;
+            width: 200px; 
+            background-color: #111; 
+            height: 100vh; 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            padding-top: 20px; 
+            transition: all 0.3s ease;
         }
-        .sidebar .logo h1 {
-            text-align: center;
-            font-size: 1.5rem;
-            color: #ff00ff;
-            margin-bottom: 30px;
+        .sidebar a {
+            padding: 10px 15px; 
+            text-decoration: none; 
+            font-size: 1.2rem; 
+            color: #fff; 
+            display: block; 
+            transition: background-color 0.3s ease;
         }
-        .sidebar ul {
-            list-style-type: none;
-            padding: 0;
+        .sidebar a:hover {
+            background-color: #333; 
+            border-radius: 5px;
         }
-        .sidebar ul li {
-            margin: 20px 0;
-        }
-        .sidebar ul li a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 1.2rem;
-            padding: 10px 20px;
-            display: block;
-            transition: background-color 0.3s;
-        }
-        .sidebar ul li a:hover {
-            background-color: #333;
-        }
-        .sidebar ul li a i {
-            margin-right: 10px;
-        }
-        /* Content Styles */
-        .content {
-            margin-left: 250px; /* Same as sidebar width */
-            padding: 20px;
-            flex: 1;
-        }
-        /* Existing Styles */
-        .container { 
-            width: 90%; 
-            margin: 0 auto; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-        }
-        .logo h1 { margin: 0; }
-        nav ul { list-style: none; padding: 0; margin: 0; display: flex; }
-        nav ul li { margin-left: 40px; }
-        nav ul li a { color: #fff; text-decoration: none; padding: 5px 10px; border: 1px solid transparent; transition: all 0.3s ease; }
-        nav ul li a:hover { border: 1px solid #fff; border-radius: 5px; }
-        nav ul li a i { margin-right: 5px; }
-        main { 
+        
+        main {
+            margin-left: 220px; 
             padding: 20px; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            min-height: 100vh; 
+            transition: margin-left 0.3s ease; 
             position: relative; 
             z-index: 1; 
         }
+
+        .section {
+            display: none; 
+            min-height: 100vh; 
+            padding: 40px 20px; 
+        }
+
+        .showcase-section, .version-list {
+            background-color: #222; 
+        }
+
         .main-content { 
             display: flex; 
             justify-content: space-between; 
@@ -164,19 +143,11 @@
             0%, 100% { box-shadow: 0 0 20px 10px rgba(128, 0, 128, 0.7); } 
             50% { box-shadow: 0 0 30px 15px rgba(128, 0, 128, 1); } 
         }
-        #stars { 
-            position: fixed; 
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 100%; 
-            z-index: 0; 
-        }
+
         /* New Tool Showcase Section */
         .showcase-section { 
             width: 100%; 
             height: 100vh; 
-            background-color: #222; 
             display: flex; 
             justify-content: center; 
             align-items: center; 
@@ -205,19 +176,21 @@
         .showcase-item img:hover { transform: scale(1.1); } /* Slightly increase scale on hover */
         .showcase-item h3 { margin-top: 15px; font-size: 1.5rem; color: #fff; }
         .showcase-item p { color: #aaa; font-size: 1.1rem; }
+        
         /* Showcase Layout Adjustments */
         .showcase-item:nth-child(1) { order: 1; } /* Top left */
         .showcase-item:nth-child(2) { order: 2; /* Middle right */ margin-left: auto; margin-right: 20px; }
         .showcase-item:nth-child(3) { order: 3; margin-top: auto; /* Bottom left */ }
+        
         /* Responsive Adjustments */
         @media (max-width: 768px) {
             .showcase-item { width: 100%; }
         }
+
         /* Version List Styles */
         .version-list { 
             padding: 40px 20px; 
             background-color: #111; 
-            height: 100vh; 
             display: flex; 
             flex-direction: column; 
             justify-content: center; 
@@ -240,195 +213,113 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
         }
         .version-item:last-child { border-bottom: none; }
-        .version-item h4 { margin: 0; color: #fff; flex: 1; }
-        .version-item a { 
-            display: inline-block; 
-            padding: 10px 20px; 
-            background-color: #333; 
+        .version-item h4 { margin: 0; font-size: 1.5rem; }
+        .version-item span { color: #aaa; }
+
+        /* Footer Styles */
+        footer { 
+            background-color: #222; 
             color: #fff; 
-            text-decoration: none; 
-            border-radius: 5px; 
-            transition: background-color 0.3s ease, transform 0.2s ease; 
-            margin-right: 10px; 
-        }
-        .version-item a:hover { 
-            background-color: #555; 
-            transform: scale(1.05); 
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2); 
-        }
-        /* Smooth scrolling */
-        html {
-            scroll-behavior: smooth;
-        }
-        /* Section Animation */
-        section {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-        section.in-view {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        /* Responsive Sidebar */
-        @media (max-width: 768px) {
-            .sidebar {
-                width: 200px;
-            }
-            .content {
-                margin-left: 200px;
-            }
-        }
-        @media (max-width: 576px) {
-            .sidebar {
-                width: 100%;
-                height: auto;
-                position: relative;
-            }
-            .sidebar .logo h1 {
-                margin-bottom: 15px;
-            }
-            .sidebar ul li {
-                display: inline-block;
-                margin: 10px;
-            }
-            .content {
-                margin-left: 0;
-            }
+            padding: 20px; 
+            text-align: center; 
+            position: relative; 
+            bottom: 0; 
+            width: 100%; 
         }
     </style>
 </head>
 <body>
-    <canvas id="stars"></canvas>
-    <!-- Add Sidebar Navigation -->
-    <div class="page-container">
-        <nav class="sidebar">
-            <div class="logo">
-                <h1>0x Raider</h1>
-            </div>
-            <ul>
-                <li><a href="#home"><i class="fa-solid fa-home"></i>Home</a></li>
-                <li><a href="#showcase"><i class="fa-solid fa-toolbox"></i>Showcase</a></li>
-                <li><a href="#versions"><i class="fa-solid fa-code-branch"></i>Versions</a></li>
-            </ul>
-        </nav>
-        <!-- Main Content -->
-        <div class="content">
-            <!-- Main Section (Home Page) -->
-            <main id="home">
-                <div class="main-content">
-                    <div class="left-content">
-                        <h2>0x Raider</h2>
-                        <p>Your ultimate tool for managing your crypto portfolio.</p>
-                        <div class="buttons">
-                            <a class="button" onclick="javascript: window.open('downloads/latest-version.zip');" style="cursor: pointer;">
-                                <i class="fa-solid fa-download" style="margin-right: 6px;"></i>
-                                Download Latest Version
-                            </a>
-                            <a class="button" onclick="javascript: window.open('https://github.com/YourRepo');" style="cursor: pointer;">
-                                <i class="fa-brands fa-github" style="margin-right: 6px;"></i>
-                                GitHub
-                            </a>
-                        </div>
-                    </div>
-                    <div class="screenshot-container">
-                        <img class="screenshot" draggable="false" src="images/0x.png" alt="0x Raider Screenshot"/>
-                    </div>
-                </div>
-            </main>
-            <!-- New Showcase Section -->
-            <section id="showcase" class="showcase-section">
-                <div class="showcase-grid">
-                    <div class="showcase-item">
-                        <img src="images/tool1.png" alt="Tool Showcase 1"/>
-                        <h3>Feature One</h3>
-                        <p>Brief description of the first tool feature.</p>
-                    </div>
-                    <div class="showcase-item">
-                        <img src="images/tool2.png" alt="Tool Showcase 2"/>
-                        <h3>Feature Two</h3>
-                        <p>Brief description of the second tool feature.</p>
-                    </div>
-                    <div class="showcase-item">
-                        <img src="images/tool3.png" alt="Tool Showcase 3"/>
-                        <h3>Feature Three</h3>
-                        <p>Brief description of the third tool feature.</p>
-                    </div>
-                </div>
-            </section>
-            <!-- Version List Section -->
-            <section id="versions" class="version-list">
-                <h3>Previous Versions</h3>
-                <div class="version-item">
-                    <h4>Version 0.1</h4>
-                    <a class="button" onclick="javascript: window.open('downloads/version0.1.zip');" style="cursor: pointer; position: relative; z-index: 1;">
-                        <i class="fa-solid fa-download" style="margin-right: 6px;"></i>Download
-                    </a>
-                </div>
-                <div class="version-item">
-                    <h4>Version 0.2</h4>
-                    <a class="button" onclick="javascript: window.open('downloads/version0.2.zip');" style="cursor: pointer; position: relative; z-index: 1;">
-                        <i class="fa-solid fa-download" style="margin-right: 6px;"></i>Download
-                    </a>
-                </div>
-                <!-- Add more versions as needed -->
-            </section>
-        </div>
+    <div id="stars"></div>
+    <div class="sidebar">
+        <a href="#showcase">Showcase</a>
+        <a href="#versions">Versions</a>
+        <a href="#contact">Contact</a>
     </div>
+
+    <main>
+        <section id="showcase" class="section showcase-section">
+            <div class="main-content">
+                <div class="left-content">
+                    <h2>Welcome to 0x Raider</h2>
+                    <p>Discover a variety of blockchain tools designed to enhance your experience. Join our community and start exploring!</p>
+                    <div class="buttons">
+                        <a href="#" class="button">Get Started</a>
+                        <a href="#" class="button">Learn More</a>
+                    </div>
+                </div>
+                <div class="screenshot-container">
+                    <img src="resources/screenshot.png" alt="Screenshot" class="screenshot"/>
+                </div>
+            </div>
+            <div class="showcase-grid">
+                <div class="showcase-item">
+                    <img src="resources/tool1.png" alt="Tool 1"/>
+                    <h3>Tool 1</h3>
+                    <p>Short description of Tool 1.</p>
+                </div>
+                <div class="showcase-item">
+                    <img src="resources/tool2.png" alt="Tool 2"/>
+                    <h3>Tool 2</h3>
+                    <p>Short description of Tool 2.</p>
+                </div>
+                <div class="showcase-item">
+                    <img src="resources/tool3.png" alt="Tool 3"/>
+                    <h3>Tool 3</h3>
+                    <p>Short description of Tool 3.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="versions" class="section version-list">
+            <h3>Latest Versions</h3>
+            <div class="version-item">
+                <h4>Version 1.0</h4>
+                <span>Released: January 1, 2024</span>
+            </div>
+            <div class="version-item">
+                <h4>Version 1.1</h4>
+                <span>Released: March 1, 2024</span>
+            </div>
+            <div class="version-item">
+                <h4>Version 1.2</h4>
+                <span>Released: June 1, 2024</span>
+            </div>
+        </section>
+
+        <section id="contact" class="section">
+            <h2>Contact Us</h2>
+            <p>For inquiries, please reach out via our social media or email.</p>
+        </section>
+    </main>
+    
+    <footer>
+        &copy; 2024 0x Raider. All rights reserved.
+    </footer>
+    
     <script>
-        const canvas = document.getElementById('stars');
-        const ctx = canvas.getContext('2d');
-        let stars = [];
-        function resizeCanvas() { 
-            canvas.width = window.innerWidth; 
-            canvas.height = window.innerHeight; 
-        }
-        resizeCanvas();
-        // Generate stars
-        for (let i = 0; i < 100; i++) {
-            stars.push({
-                x: Math.random() * canvas.width, 
-                y: Math.random() * canvas.height, 
-                radius: Math.random() * 2, 
-                speed: Math.random() * 2 + 0.5, 
-                opacity: Math.random()
-            });
-        }
-        // Animate stars
-        function animateStars() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            for (let i = 0; i < stars.length; i++) {
-                const star = stars[i];
-                star.y -= star.speed;
-                // Reset star position when it goes off screen
-                if (star.y < 0) {
-                    star.y = canvas.height;
-                    star.x = Math.random() * canvas.width;
-                }
-                ctx.beginPath();
-                ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`;
-                ctx.fill();
-            }
-            requestAnimationFrame(animateStars);
-        }
-        animateStars();
-        window.addEventListener('resize', resizeCanvas);
-        // Section Animation on Scroll
-        const sections = document.querySelectorAll('section');
-        function checkSections() {
-            const triggerBottom = window.innerHeight / 5 * 4;
-            sections.forEach(section => {
-                const sectionTop = section.getBoundingClientRect().top;
-                if(sectionTop < triggerBottom) {
-                    section.classList.add('in-view');
-                } else {
-                    section.classList.remove('in-view');
+        const sections = document.querySelectorAll('.section');
+        const links = document.querySelectorAll('.sidebar a');
+
+        // Show the first section on load
+        sections[0].style.display = 'block';
+
+        // Add click event for each link
+        links.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+                
+                sections.forEach(section => {
+                    section.style.display = 'none'; // Hide all sections
+                });
+                
+                const targetSection = document.getElementById(targetId);
+                if (targetSection) {
+                    targetSection.style.display = 'block'; // Show the target section
+                    window.scrollTo(0, 0); // Scroll to the top of the page
                 }
             });
-        }
-        window.addEventListener('scroll', checkSections);
-        checkSections(); // Initial check
+        });
     </script>
 </body>
 </html>
