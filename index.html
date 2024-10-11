@@ -54,7 +54,17 @@
         }
 
         /* Version List Styles */
-        .version-list { padding: 40px 20px; background-color: #111; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        .version-list { 
+            padding: 40px 20px; 
+            background-color: #111; 
+            height: 100vh; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            position: relative; /* Ensures this section is above others */
+            z-index: 10; /* Higher z-index to ensure clickability */
+        }
         .version-list h3 { text-align: center; font-size: 2rem; margin-bottom: 20px; color: #ff00ff; }
         .version-item { display: flex; justify-content: space-between; align-items: center; max-width: 800px; width: 100%; margin: 10px 0; padding: 10px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
         .version-item:last-child { border-bottom: none; }
@@ -73,88 +83,88 @@
                 <h2>0x Raider</h2>
                 <p>Your ultimate tool for managing your crypto portfolio.</p>
                 <div class="buttons">
-                    <a class="button" onclick="javascript: window.open('downloads/latest-version.zip');" style="cursor: pointer;">
-                        <i class="fa-solid fa-download" style="margin-right: 6px;"></i>
-                        Download Latest Version
-                    </a>
-                    <a class="button" onclick="javascript: window.open('https://discord.gg/eqNCeB4rEB');" style="cursor: pointer;">
-                        <i class="fa-brands fa-github" style="margin-right: 6px;"></i>
-                        GitHub
-                    </a>
+                    <a class="button" onclick="javascript: window.open('https://example.com/download', '_blank')">Download</a>
+                    <a class="button" onclick="javascript: window.open('https://example.com/about', '_blank')">About Us</a>
                 </div>
             </div>
             <div class="screenshot-container">
-                <img class="screenshot" draggable="false" src="images/0x.png" alt="0x Raider Screenshot"/>
+                <img src="resources/screenshot.png" alt="Screenshot of 0x Raider" class="screenshot"/>
             </div>
         </div>
     </main>
 
-    <!-- New Showcase Section -->
+    <!-- Showcase Section -->
     <section class="showcase-section">
         <div class="showcase-grid">
             <div class="showcase-item">
-                <img src="images/tool1.png" alt="Tool Showcase 1"/>
-                <h3>Feature One</h3>
-                <p>Brief description of the first tool feature.</p>
+                <img src="resources/tool1.png" alt="Tool 1"/>
+                <h3>Tool 1</h3>
+                <p>Short description of Tool 1.</p>
             </div>
             <div class="showcase-item">
-                <img src="images/tool2.png" alt="Tool Showcase 2"/>
-                <h3>Feature Two</h3>
-                <p>Brief description of the second tool feature.</p>
+                <img src="resources/tool2.png" alt="Tool 2"/>
+                <h3>Tool 2</h3>
+                <p>Short description of Tool 2.</p>
             </div>
             <div class="showcase-item">
-                <img src="images/tool3.png" alt="Tool Showcase 3"/>
-                <h3>Feature Three</h3>
-                <p>Brief description of the third tool feature.</p>
+                <img src="resources/tool3.png" alt="Tool 3"/>
+                <h3>Tool 3</h3>
+                <p>Short description of Tool 3.</p>
             </div>
         </div>
     </section>
 
     <!-- Version List Section -->
     <section class="version-list">
-        <h3>Previous Versions</h3>
+        <h3>Versions</h3>
         <div class="version-item">
-            <h4>Version 0.1</h4>
-            <a class="button" onclick="javascript: window.open('https://realgekkefries.github.io/0xRaider/');" style="cursor: pointer;">
-                <i class="fa-solid fa-download" style="margin-right: 6px;"></i>Download
-            </a>
+            <h4>Version 1.0</h4>
+            <a href="https://example.com/version1" target="_blank">Download</a>
         </div>
         <div class="version-item">
-            <h4>Version 0.2</h4>
-            <a class="button" onclick="javascript: window.open('https://realgekkefries.github.io/0xRaider/');" style="cursor: pointer;">
-                <i class="fa-solid fa-download" style="margin-right: 6px;"></i>Download
-            </a>
+            <h4>Version 1.1</h4>
+            <a href="https://example.com/version2" target="_blank">Download</a>
         </div>
-        <!-- Add more versions as needed -->
+        <div class="version-item">
+            <h4>Version 1.2</h4>
+            <a href="https://example.com/version3" target="_blank">Download</a>
+        </div>
     </section>
 
     <script>
+        // JavaScript for star field effect
         const canvas = document.getElementById('stars');
         const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
         let stars = [];
-        function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-        resizeCanvas();
-        for (let i = 0; i < 100; i++) {
-            stars.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, radius: Math.random() * 2, speed: Math.random() * 2 + 0.5, opacity: Math.random() });
+
+        for (let i = 0; i < 1000; i++) {
+            stars.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                radius: Math.random() * 1.5,
+                opacity: Math.random()
+            });
         }
-        function animateStars() {
+
+        function draw() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            for (let i = 0; i < stars.length; i++) {
-                const star = stars[i];
-                star.y -= star.speed;
-                if (star.y < 0) {
-                    star.y = canvas.height;
-                    star.x = Math.random() * canvas.width;
-                }
+
+            stars.forEach(star => {
                 ctx.beginPath();
                 ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-                ctx.fillStyle = rgba(255, 255, 255, ${star.opacity});
+                ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`;
                 ctx.fill();
-            }
-            requestAnimationFrame(animateStars);
+            });
+
+            requestAnimationFrame(draw);
         }
-        animateStars();
-        window.addEventListener('resize', resizeCanvas);
+
+        draw();
     </script>
 </body>
 </html>
+
