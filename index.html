@@ -268,7 +268,7 @@
         </div>
     </section>
     <!-- About Developer Section -->
-    <section class="about-developer">
+    <section class="about-developer full-view">
         <div class="container">
             <div class="about-content">
                 <h2>About the Developer</h2>
@@ -276,7 +276,7 @@
                     <ul>
                         <li><strong>Name:</strong> Sam</li>
                         <li><strong>Age:</strong> 15</li>
-                        <li><strong>Python:</strong> 1.5 years</li>
+                        <li><strong>Python Experience:</strong> 1.5 years</li>
                         <li><strong>Projects:</strong> 0x Raider</li>
                     </ul>
                 </div>
@@ -285,9 +285,12 @@
     </section>
 
     <style>
-        .about-developer {
+        .about-developer.full-view {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             background-color: #222;
-            padding: 40px 20px;
             color: #fff;
             text-align: center;
         }
