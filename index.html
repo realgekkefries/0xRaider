@@ -277,16 +277,19 @@
         
         <!-- Product 1 -->
         <div class="product-card">
+            <h3 class="product-name">Product 1</h3>
             <iframe src="https://embed.sellix.io/product/670d4208293b1" width="300" height="500" style="border:none;"></iframe>
         </div>
 
         <!-- Product 2 -->
         <div class="product-card">
+            <h3 class="product-name">Product 2</h3>
             <iframe src="https://embed.sellix.io/product/670d4208293b1" width="300" height="500" style="border:none;"></iframe>
         </div>
 
         <!-- Product 3 -->
         <div class="product-card">
+            <h3 class="product-name">Product 3</h3>
             <iframe src="https://embed.sellix.io/product/670d4208293b1" width="300" height="500" style="border:none;"></iframe>
         </div>
 
@@ -299,6 +302,10 @@
         background-color: #333;
         color: #fff;
         text-align: center;
+        min-height: 100vh; /* Make section fill the entire viewport height */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
 
     .shop-section h2 {
@@ -315,24 +322,36 @@
         justify-content: center;
         gap: 20px;
         flex-wrap: wrap;
+        align-items: center; /* Vertically center the items */
     }
 
     .product-card {
         position: relative;
         display: inline-block;
         overflow: hidden;
+        text-align: center;
+    }
+
+    .product-name {
+        font-size: 1.5rem;
+        color: #fff;
+        margin-bottom: 10px;
+        font-weight: bold;
+        text-shadow: 0 0 5px rgba(255, 0, 255, 0.7);
     }
 
     .sellix-embed-container iframe {
         border-radius: 10px;
         box-shadow: 0 0 15px rgba(128, 0, 128, 0.7);
-        transition: transform 0.3s ease, filter 0.3s ease;
+        transition: transform 0.3s ease, filter 0.3s ease, box-shadow 0.3s ease;
         filter: blur(5px);
+        border: none;
     }
 
     .sellix-embed-container iframe:hover {
         transform: scale(1.05);
         filter: blur(0);
+        box-shadow: 0 0 25px rgba(255, 0, 255, 0.8); /* Glowing effect */
     }
 
     @media (max-width: 768px) {
@@ -342,111 +361,6 @@
         }
     }
 </style>
-
-
-    
-    <!-- About Developer Section -->
-    <section class="about-developer full-view">
-        <div class="container">
-            <div class="about-content">
-                <div class="text-content">
-                    <h2>About the Developer</h2>
-                    <div class="details">
-                        <ul>
-                            <li><strong>Name:</strong> Sam</li>
-                            <li><strong>Age:</strong> 15</li>
-                            <li><strong>Python Experience:</strong> 1.5 years</li>
-                            <li><strong>Projects:</strong> 0x Raider</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="image-content">
-                    <img src="images/me.png" alt="Developer Image"/>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <style>
-        .about-developer.full-view {
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #222;
-            color: #fff;
-            text-align: center;
-            padding: 20px;
-        }
-
-        .about-developer h2 {
-            font-size: 2.5rem;
-            background-image: linear-gradient(120deg, #8a2be2, #ff00ff);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            margin-bottom: 15px;
-        }
-
-        .about-developer .details {
-            margin-top: 20px;
-        }
-
-        .about-developer ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            font-size: 1.5rem;
-        }
-
-        .about-developer ul li {
-            margin-bottom: 5px;
-        }
-
-        .about-developer .about-content {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 80%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .text-content {
-            flex: 1;
-            margin-right: 5px; /* Decreased margin */
-            text-align: left;
-        }
-
-        .image-content {
-            margin-left: 5px; /* Reduced the margin */
-        }
-
-        .image-content img {
-            width: 250px;
-            height: 250px;
-            object-fit: cover;
-            border-radius: 15px;
-            box-shadow: 0 0 25px rgba(255, 0, 255, 0.5);
-        }
-
-        @media (max-width: 768px) {
-            .about-developer .about-content {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .text-content {
-                margin-right: 0;
-                margin-bottom: 15px;
-            }
-
-            .image-content img {
-                width: 200px;
-                height: 200px;
-            }
-        }
-    </style>
 
 
 
