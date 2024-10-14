@@ -270,60 +270,206 @@
     </section>
 
 
-<!-- Shop Section -->
-<section class="shop-section">
-    <h2>Shop</h2>
-    <div class="sellix-embed-container">
+import React, { useState, useEffect } from 'react';
 
-        <iframe src="https://embed.sellix.io/product/670d4208293b1" width="300" height="500" style="border:none;"></iframe>
+interface SellixEmbedProps {
+  productId: string;
+  children: React.ReactNode;
+}
 
-        <iframe src="https://embed.sellix.io/product/670d4208293b1" width="300" height="500" style="border:none;"></iframe>
+const SellixEmbed: React.FC<SellixEmbedProps> = ({ productId, children }) => {
+  const [showModal, setShowModal] = useState(false);
 
-        <iframe src="https://embed.sellix.io/product/670d4208293b1" width="300" height="500" style="border:none;"></iframe>
-    </div>
-</section>
+  useEffect(() => {
+    const modalCloseHandler = (event: MessageEvent) => {
+      if (event.data === "close-embed") {
+        setShowModal(false);
+      }
+    };
 
-<style>
-    .shop-section {
-        padding: 40px 20px;
-        background-color: #333;
-        color: #fff;
-        text-align: center;
-    }
+    window.addEventListener("message", modalCloseHandler);
 
-    .shop-section h2 {
-        font-size: 2.5rem;
-        background-image: linear-gradient(120deg, #8a2be2, #ff00ff);
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-        margin-bottom: 20px;
-    }
+    return () => {
+      window.removeEventListener("message", modalCloseHandler);
+    };
+  }, []);
 
-    .sellix-embed-container {
-        display: flex;
-        justify-content: center;
-        gap: 20px;
-        flex-wrap: wrap;
-    }
+  const handleEmbedButtonClick = () => {
+    setShowModal(true);
+  };
 
-    .sellix-embed-container iframe {
-        border-radius: 10px;
-        box-shadow: 0 0 15px rgba(128, 0, 128, 0.7);
-        transition: transform 0.3s ease;
-    }
+  const modalClose = () => {
+    setShowModal(false);
+  };
 
-    .sellix-embed-container iframe:hover {
-        transform: scale(1.05);
-    }
+  const iframeUrl = `https://embed.sellix.io/product/${productId}`;
 
-    @media (max-width: 768px) {
-        .sellix-embed-container {
-            flex-direction: column;
+  return (
+    <>
+      <button className="embed-button" onClick={handleEmbedButtonClick}>
+        {children}
+      </button>
+      {showModal && (
+        <div className="sellix-modal">
+          <div className="sellix-backdrop" onClick={modalClose}></div>
+          <div className="sellix-iframe-wrapper">
+            <div className="sellix-iframe-content">
+              <div className="sellix-iframe-loader-container">
+                <img
+                  src="https://cdn.sellix.io/static/embed/loader.png"
+                  alt="Loader"
+                  className="sellix-iframe-loader"
+                  style={{ width: "35px" }}
+                />
+              </div>
+              <iframe
+                src={iframeUrl}
+                className="sellix-iframe"
+                title="Sellix Embed"
+                onLoad={() => {
+                  const loader = document.querySelector(".sellix-iframe-loader-container");
+                  if (loader) loader.remove();
+                }}
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  );
+};
+
+const Shop = () => {
+  return (
+    <section className="shop-section">
+      <h2>Shop</h2>
+      <div className="sellix-embed-container">
+        <SellixEmbed productId="670d4208293b1">
+          <button>View Product 1</button>
+        </SellixEmbed>
+        <SellixEmbed productId="670d4208293b1">
+          <button>View Product 2</button>
+        </SellixEmbed>
+        <SellixEmbed productId="670d4208293b1">
+          <button>View Product 3</button>
+        </SellixEmbed>
+      </div>
+      <style>
+        {`
+          .shop-section {
+            padding: 40px 20px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+          }
+
+          .shop-section h2 {
+            font-size: 2.5rem;
+            background-image: linear-gradient(120deg, #8a2be2, #ff00ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 20px;
+          }
+
+          .sellix-embed-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+          }
+
+          .embed-button {
+            background-color: #8a2be2;
+            color: #fff;
+            padding: 12px 20px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+          }
+
+          .embed-button:hover {
+            transform: scale(1.05);
+          }
+
+          .sellix-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.75);
+            display: flex;
+            justify-content: center;
             align-items: center;
-        }
-    }
-</style>
+            z-index: 1000;
+          }
+
+          .sellix-backdrop {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: -1;
+          }
+
+          .sellix-iframe-wrapper {
+            width: 80%;
+            max-width: 1000px;
+            height: 80%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+          }
+
+          .sellix-iframe-content {
+            position: relative;
+            width: 100%;
+            height: 100%;
+          }
+
+          .sellix-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+          }
+
+          .sellix-iframe-loader-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+          }
+
+          .sellix-iframe-loader {
+            width: 35px;
+          }
+
+          @media (max-width: 768px) {
+            .sellix-embed-container {
+              flex-direction: column;
+              align-items: center;
+            }
+
+            .sellix-iframe-wrapper {
+              width: 90%;
+              height: 80%;
+            }
+          }
+        `}
+      </style>
+    </section>
+  );
+};
+
+export default Shop;
 
 
     
