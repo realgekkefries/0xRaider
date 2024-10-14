@@ -270,206 +270,180 @@
     </section>
 
 
-import React, { useState, useEffect } from 'react';
-
-interface SellixEmbedProps {
-  productId: string;
-  children: React.ReactNode;
-}
-
-const SellixEmbed: React.FC<SellixEmbedProps> = ({ productId, children }) => {
-  const [showModal, setShowModal] = useState(false);
-
-  useEffect(() => {
-    const modalCloseHandler = (event: MessageEvent) => {
-      if (event.data === "close-embed") {
-        setShowModal(false);
-      }
-    };
-
-    window.addEventListener("message", modalCloseHandler);
-
-    return () => {
-      window.removeEventListener("message", modalCloseHandler);
-    };
-  }, []);
-
-  const handleEmbedButtonClick = () => {
-    setShowModal(true);
-  };
-
-  const modalClose = () => {
-    setShowModal(false);
-  };
-
-  const iframeUrl = `https://embed.sellix.io/product/${productId}`;
-
-  return (
-    <>
-      <button className="embed-button" onClick={handleEmbedButtonClick}>
-        {children}
-      </button>
-      {showModal && (
-        <div className="sellix-modal">
-          <div className="sellix-backdrop" onClick={modalClose}></div>
-          <div className="sellix-iframe-wrapper">
-            <div className="sellix-iframe-content">
-              <div className="sellix-iframe-loader-container">
-                <img
-                  src="https://cdn.sellix.io/static/embed/loader.png"
-                  alt="Loader"
-                  className="sellix-iframe-loader"
-                  style={{ width: "35px" }}
-                />
-              </div>
-              <iframe
-                src={iframeUrl}
-                className="sellix-iframe"
-                title="Sellix Embed"
-                onLoad={() => {
-                  const loader = document.querySelector(".sellix-iframe-loader-container");
-                  if (loader) loader.remove();
-                }}
-              ></iframe>
-            </div>
-          </div>
+<!-- Shop Section -->
+<section class="shop-section">
+    <h2>Shop</h2>
+    <div class="sellix-embed-container">
+        
+        <!-- Product 1 -->
+        <div class="product-card">
+            <iframe src="https://embed.sellix.io/product/670d4208293b1" width="300" height="500" style="border:none;"></iframe>
+            <button class="purchase-btn" onclick="openModal('product1')">Purchase</button>
         </div>
-      )}
-    </>
-  );
-};
 
-const Shop = () => {
-  return (
-    <section className="shop-section">
-      <h2>Shop</h2>
-      <div className="sellix-embed-container">
-        <SellixEmbed productId="670d4208293b1">
-          <button>View Product 1</button>
-        </SellixEmbed>
-        <SellixEmbed productId="670d4208293b1">
-          <button>View Product 2</button>
-        </SellixEmbed>
-        <SellixEmbed productId="670d4208293b1">
-          <button>View Product 3</button>
-        </SellixEmbed>
-      </div>
-      <style>
-        {`
-          .shop-section {
-            padding: 40px 20px;
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-          }
+        <!-- Product 2 -->
+        <div class="product-card">
+            <iframe src="https://embed.sellix.io/product/670d4208293b1" width="300" height="500" style="border:none;"></iframe>
+            <button class="purchase-btn" onclick="openModal('product2')">Purchase</button>
+        </div>
 
-          .shop-section h2 {
-            font-size: 2.5rem;
-            background-image: linear-gradient(120deg, #8a2be2, #ff00ff);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            margin-bottom: 20px;
-          }
+        <!-- Product 3 -->
+        <div class="product-card">
+            <iframe src="https://embed.sellix.io/product/670d4208293b1" width="300" height="500" style="border:none;"></iframe>
+            <button class="purchase-btn" onclick="openModal('product3')">Purchase</button>
+        </div>
 
-          .sellix-embed-container {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-          }
+    </div>
+</section>
 
-          .embed-button {
-            background-color: #8a2be2;
-            color: #fff;
-            padding: 12px 20px;
-            font-size: 1.2rem;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-          }
+<!-- Modal for Product Selection -->
+<div id="productModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <h2>Select Product Options</h2>
+        <form action="#" method="post">
+            <label for="product-option">Choose your option:</label>
+            <select id="product-option">
+                <option value="default">Select Option</option>
+                <option value="option1">Option 1</option>
+                <option value="option2">Option 2</option>
+                <option value="option3">Option 3</option>
+            </select>
+            <br>
+            <button type="submit" class="submit-btn">Proceed to Payment</button>
+        </form>
+    </div>
+</div>
 
-          .embed-button:hover {
-            transform: scale(1.05);
-          }
+<style>
+    .shop-section {
+        padding: 40px 20px;
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+    }
 
-          .sellix-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.75);
-            display: flex;
-            justify-content: center;
+    .shop-section h2 {
+        font-size: 2.5rem;
+        background-image: linear-gradient(120deg, #8a2be2, #ff00ff);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        margin-bottom: 20px;
+    }
+
+    .sellix-embed-container {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+
+    .product-card {
+        position: relative;
+        display: inline-block;
+    }
+
+    .sellix-embed-container iframe {
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(128, 0, 128, 0.7);
+        transition: transform 0.3s ease;
+    }
+
+    .sellix-embed-container iframe:hover {
+        transform: scale(1.05);
+    }
+
+    .purchase-btn {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #8a2be2;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        font-size: 1.2rem;
+        cursor: pointer;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(128, 0, 128, 0.7);
+    }
+
+    .purchase-btn:hover {
+        background-color: #ff00ff;
+    }
+
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    .modal-content {
+        background-color: #fff;
+        margin: 15% auto;
+        padding: 20px;
+        border-radius: 10px;
+        width: 50%;
+        text-align: center;
+    }
+
+    .close-btn {
+        color: #aaa;
+        font-size: 28px;
+        font-weight: bold;
+        position: absolute;
+        top: 5px;
+        right: 10px;
+        cursor: pointer;
+    }
+
+    .close-btn:hover,
+    .close-btn:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .submit-btn {
+        background-color: #8a2be2;
+        color: #fff;
+        padding: 10px 20px;
+        font-size: 1.2rem;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        margin-top: 20px;
+    }
+
+    .submit-btn:hover {
+        background-color: #ff00ff;
+    }
+
+    @media (max-width: 768px) {
+        .sellix-embed-container {
+            flex-direction: column;
             align-items: center;
-            z-index: 1000;
-          }
+        }
+    }
+</style>
 
-          .sellix-backdrop {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: -1;
-          }
+<script>
+    function openModal(productId) {
+        document.getElementById('productModal').style.display = "block";
+    }
 
-          .sellix-iframe-wrapper {
-            width: 80%;
-            max-width: 1000px;
-            height: 80%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
-          }
+    function closeModal() {
+        document.getElementById('productModal').style.display = "none";
+    }
+</script>
 
-          .sellix-iframe-content {
-            position: relative;
-            width: 100%;
-            height: 100%;
-          }
-
-          .sellix-iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-          }
-
-          .sellix-iframe-loader-container {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-          }
-
-          .sellix-iframe-loader {
-            width: 35px;
-          }
-
-          @media (max-width: 768px) {
-            .sellix-embed-container {
-              flex-direction: column;
-              align-items: center;
-            }
-
-            .sellix-iframe-wrapper {
-              width: 90%;
-              height: 80%;
-            }
-          }
-        `}
-      </style>
-    </section>
-  );
-};
-
-export default Shop;
 
 
     
