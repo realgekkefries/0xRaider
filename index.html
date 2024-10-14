@@ -272,21 +272,27 @@
 
 <!-- Shop Section -->
 <section class="shop-section">
-    <h2>Shop</h2>
-    <div class="sellix-embed-container">
-        <iframe src="https://sellix.io/embed/product/670d4208293b1" width="300" height="500" style="border:none;"></iframe>
-
-        <iframe src="https://sellix.io/embed/product/670d4208293b1" width="300" height="500" style="border:none;"></iframe>
-
-        <iframe src="https://sellix.io/embed/product/670d4208293b1" width="300" height="500" style="border:none;"></iframe>
+    <div class="container">
+        <h2>Our Shop</h2>
+        <div class="shop-embeds">
+            <div class="shop-item">
+                <iframe src="https://sellix.io/embed/product/670d4208293b1" width="100%" height="550px" style="border: none;"></iframe>
+            </div>
+            <div class="shop-item">
+                <iframe src="https://sellix.io/embed/product/670d4208293b1" width="100%" height="550px" style="border: none;"></iframe>
+            </div>
+            <div class="shop-item">
+                <iframe src="https://sellix.io/embed/product/670d4208293b1" width="100%" height="550px" style="border: none;"></iframe>
+            </div>
+        </div>
     </div>
 </section>
 
 <style>
     .shop-section {
-        padding: 40px 20px;
-        background-color: #333;
+        background-color: #222;
         color: #fff;
+        padding: 40px 20px;
         text-align: center;
     }
 
@@ -296,33 +302,29 @@
         -webkit-background-clip: text;
         background-clip: text;
         color: transparent;
-        margin-bottom: 20px;
+        margin-bottom: 30px;
     }
 
-    .sellix-embed-container {
+    .shop-embeds {
         display: flex;
-        justify-content: center;
-        gap: 20px;
+        justify-content: space-between;
         flex-wrap: wrap;
     }
 
-    .sellix-embed-container iframe {
-        border-radius: 10px;
-        box-shadow: 0 0 15px rgba(128, 0, 128, 0.7);
-        transition: transform 0.3s ease;
-    }
-
-    .sellix-embed-container iframe:hover {
-        transform: scale(1.05);
+    .shop-item {
+        width: 32%;
+        margin: 10px;
+        box-shadow: 0 0 20px rgba(128, 0, 128, 0.7);
     }
 
     @media (max-width: 768px) {
-        .sellix-embed-container {
-            flex-direction: column;
-            align-items: center;
+        .shop-item {
+            width: 100%;
+            margin-bottom: 20px;
         }
     }
 </style>
+
 
     
     <!-- About Developer Section -->
