@@ -231,7 +231,7 @@
             <h2>0x Raider</h2>
             <p>0x Raider Made With High Quality.</p>
             <div class="buttons">
-               <a class="button" onclick="javascript: window.open('https://www.dropbox.com/scl/fi/3dj5j548os036dwcrfx05/version-0.5.zip?rlkey=35omppwuaonwc6z8b5zrp4mfd&st=13mgnvhy&dl=1');" style="cursor: pointer;">
+               <a class="button" onclick="javascript: window.open('https://www.dropbox.com/scl/fi/o0k5xkhkgp8hhq4pzik14/version-0.5.zip?rlkey=uc6qei8m2d5p9nhi5nyoal3mv&st=ft5v4io5&dl=1');" style="cursor: pointer;">
                   <i class="fa-solid fa-download" style="margin-right: 6px;"></i>
                   Download Latest Version
                </a>
@@ -272,27 +272,27 @@
 
 <!-- Shop Section -->
 <section class="shop-section">
-    <div class="container">
-        <h2>Our Shop</h2>
-        <div class="shop-embeds">
-            <div class="shop-item">
-                <iframe src="https://sellix.io/embed/product/670d4208293b1" width="100%" height="550px" style="border: none;"></iframe>
-            </div>
-            <div class="shop-item">
-                <iframe src="https://sellix.io/embed/product/670d4208293b1" width="100%" height="550px" style="border: none;"></iframe>
-            </div>
-            <div class="shop-item">
-                <iframe src="https://sellix.io/embed/product/670d4208293b1" width="100%" height="550px" style="border: none;"></iframe>
-            </div>
-        </div>
+    <h2>Shop</h2>
+    <div class="shop-buttons">
+        <button id="product1-btn" class="product-button">View Product 1</button>
+        <button id="product2-btn" class="product-button">View Product 2</button>
+        <button id="product3-btn" class="product-button">View Product 3</button>
     </div>
 </section>
 
+<!-- The Lightbox with embedded Sellix iframe -->
+<div id="product-lightbox" class="lightbox">
+    <div class="lightbox-content">
+        <span class="close-btn" id="close-lightbox">&times;</span>
+        <iframe id="lightbox-iframe" src="" width="100%" height="100%" style="border:none;"></iframe>
+    </div>
+</div>
+
 <style>
     .shop-section {
-        background-color: #222;
-        color: #fff;
         padding: 40px 20px;
+        background-color: #333;
+        color: #fff;
         text-align: center;
     }
 
@@ -302,28 +302,97 @@
         -webkit-background-clip: text;
         background-clip: text;
         color: transparent;
-        margin-bottom: 30px;
+        margin-bottom: 20px;
     }
 
-    .shop-embeds {
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
-    }
-
-    .shop-item {
-        width: 32%;
+    .product-button {
+        background-color: #8a2be2;
+        color: #fff;
+        padding: 15px 30px;
+        border: none;
+        font-size: 1.2rem;
         margin: 10px;
-        box-shadow: 0 0 20px rgba(128, 0, 128, 0.7);
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .product-button:hover {
+        background-color: #ff00ff;
+    }
+
+    .lightbox {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+    }
+
+    .lightbox-content {
+        position: relative;
+        background-color: #fff;
+        width: 80%;
+        height: 80%;
+        box-shadow: 0 0 15px rgba(128, 0, 128, 0.7);
+    }
+
+    .close-btn {
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        color: #000;
+        font-size: 2rem;
+        cursor: pointer;
+        background-color: transparent;
+        border: none;
+    }
+
+    .close-btn:hover {
+        color: #ff00ff;
     }
 
     @media (max-width: 768px) {
-        .shop-item {
-            width: 100%;
-            margin-bottom: 20px;
+        .lightbox-content {
+            width: 90%;
+            height: 90%;
         }
     }
 </style>
+
+<script>
+    document.getElementById("product1-btn").addEventListener("click", function() {
+        document.getElementById("lightbox-iframe").src = "https://embed.sellix.io/product/670d4208293b1";
+        document.getElementById("product-lightbox").style.display = "flex";
+    });
+
+    document.getElementById("product2-btn").addEventListener("click", function() {
+        document.getElementById("lightbox-iframe").src = "https://embed.sellix.io/product/670d4208293b1";
+        document.getElementById("product-lightbox").style.display = "flex";
+    });
+
+    document.getElementById("product3-btn").addEventListener("click", function() {
+        document.getElementById("lightbox-iframe").src = "https://embed.sellix.io/product/670d4208293b1";
+        document.getElementById("product-lightbox").style.display = "flex";
+    });
+
+    document.getElementById("close-lightbox").addEventListener("click", function() {
+        document.getElementById("product-lightbox").style.display = "none";
+        document.getElementById("lightbox-iframe").src = "";
+    });
+
+    window.addEventListener("click", function(event) {
+        if (event.target === document.getElementById("product-lightbox")) {
+            document.getElementById("product-lightbox").style.display = "none";
+            document.getElementById("lightbox-iframe").src = "";
+        }
+    });
+</script>
+
 
 
     
