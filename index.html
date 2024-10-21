@@ -147,12 +147,11 @@
             display: flex; 
             flex-wrap: wrap; 
             justify-content: space-between; 
-            align-items: flex-start; 
             max-width: 1200px; 
-            width: 100%; 
+            margin: 0 auto; /* Center the grid */
         }
         .showcase-item { 
-            width: 70%; 
+            flex: 1 1 calc(33.333% - 40px); /* Responsive flex basis */
             margin: 20px; 
             text-align: center; 
         }
@@ -173,7 +172,9 @@
         .showcase-item:nth-child(3) { order: 3; margin-top: auto; /* Bottom left */ }
 
         @media (max-width: 768px) {
-            .showcase-item { width: 100%; }
+            .showcase-item { 
+                flex: 1 1 100%;
+            }
         }
 
         /* Version List Styles */
