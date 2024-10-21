@@ -145,13 +145,13 @@
         }
         .showcase-grid { 
             display: flex; 
-            flex-wrap: wrap; 
             justify-content: space-between; 
+            align-items: flex-start; 
             max-width: 1200px; 
-            margin: 0 auto; 
+            width: 100%; 
         }
         .showcase-item { 
-            flex: 1 1 calc(33.333% - 40px); 
+            flex: 1; 
             margin: 20px; 
             text-align: center; 
         }
@@ -162,18 +162,19 @@
             box-shadow: 0 0 20px rgba(128, 0, 128, 0.7); 
             transition: transform 0.3s ease; 
         }
-        .showcase-item img:hover { transform: scale(1.1); } 
+        .showcase-item img:hover { transform: scale(1.1); } /* Slightly increase scale on hover */
         .showcase-item h3 { margin-top: 15px; font-size: 1.5rem; color: #fff; }
         .showcase-item p { color: #aaa; font-size: 1.1rem; }
         
         /* Showcase Layout Adjustments */
-        .showcase-item:nth-child(1) { order: 1; } /* Top left */
-        .showcase-item:nth-child(2) { order: 2; /* Middle right */ margin-left: auto; margin-right: 20px; }
-        .showcase-item:nth-child(3) { order: 3; margin-top: auto; /* Bottom left */ }
+        .showcase-item:nth-child(1) { order: 1; margin-right: 20px; } /* Left */
+        .showcase-item:nth-child(2) { order: 2; margin-left: 20px; margin-right: 20px; } /* Center */
+        .showcase-item:nth-child(3) { order: 3; margin-left: 20px; } /* Right */
 
         @media (max-width: 768px) {
             .showcase-item { 
-                flex: 1 1 100%;
+                width: 100%; 
+                margin: 10px 0; /* Stacks items vertically */
             }
         }
 
@@ -224,6 +225,7 @@
 </head>
 <body>
     <canvas id="stars"></canvas>
+
 
    <!-- Main Section -->
    <main>
