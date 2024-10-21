@@ -449,24 +449,57 @@
    </main>
 
 
-    <!-- Showcase Section -->
-    <section class="showcase-section">
-        <div class="showcase-grid">
-            <div class="showcase-item">
-                <img src="images/tool1.png" alt="Tool Showcase 1"/>
-                <h3>Cheap</h3>
-                <p>Our Tool Is Highly Affordable :D.</p>
-            </div>
-            <div class="showcase-item">
-                <img src="images/tool2.png" alt="Tool Showcase 2"/>
-                <h3>High Quality</h3>
-                <p>Our Joiner Is Unflagged And Supports 2 Captcha Solvers.</p>
-            </div>
-            <div class="showcase-item">
-                <img src="images/tool3.png" alt="Tool Showcase 3"/>
-                <h3>24/7 Support</h3>
-                <p>We Provide At All Time Support And Fix Each Single Found Bug The Next Day.</p>
-            </div>
+        .why-choose-section {
+            padding: 40px 20px;
+            background-color: #333; /* Match background with shop section */
+            color: #fff;
+            text-align: center;
+            min-height: 100vh; /* Fill the viewport height */
+        }
+
+        .why-choose-section h2 {
+            font-size: 2.5rem;
+            background-image: linear-gradient(120deg, #8a2be2, #ff00ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 20px;
+        }
+
+        .features-box {
+            background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+            border-radius: 10px; /* Rounded corners */
+            padding: 20px;
+            display: inline-block;
+        }
+
+        .features-box ul {
+            list-style-type: none; /* Remove default list style */
+            padding: 0;
+            margin: 0;
+        }
+
+        .features-box li {
+            font-size: 1.2rem; /* Font size for list items */
+            margin: 10px 0; /* Spacing between items */
+            text-shadow: 0 0 5px rgba(255, 0, 255, 0.5); /* Optional text shadow for effect */
+        }
+    </style>
+</head>
+<body>
+    <!-- New Why Choose Section -->
+    <section class="why-choose-section">
+        <h2>Why Choose For 0x?</h2>
+        <div class="features-box">
+            <ul>
+                <li>Fast</li>
+                <li>24/7 Support</li>
+                <li>Supports Captcha Solvers</li>
+                <li>Continuously Updates</li>
+                <li>Proxy Support</li>
+                <li>Unflagged Joiner</li>
+                <li>Easy To Use</li>
+            </ul>
         </div>
     </section>
 
