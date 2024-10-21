@@ -40,8 +40,9 @@
             width: 90%; 
             margin: 0 auto; 
             display: flex; 
-            justify-content: space-between; 
+            justify-content: center; 
             align-items: center; 
+            flex-direction: column; /* Stack items vertically */
         }
         .logo h1 { margin: 0; }
         nav ul { list-style: none; padding: 0; margin: 0; display: flex; }
@@ -60,7 +61,7 @@
         }
         .main-content { 
             display: flex; 
-            justify-content: space-between; 
+            justify-content: center; 
             align-items: flex-start; 
             max-width: 1200px; 
             width: 100%; 
@@ -149,10 +150,11 @@
             align-items: flex-start; 
             max-width: 1200px; 
             width: 100%; 
+            flex-direction: column; /* Stack items vertically */
         }
         .showcase-item { 
-            flex: 1; 
-            margin: 20px; 
+            width: 70%; 
+            margin: 20px 0; /* Margin for vertical spacing */
             text-align: center; 
         }
         .showcase-item img { 
@@ -166,16 +168,13 @@
         .showcase-item h3 { margin-top: 15px; font-size: 1.5rem; color: #fff; }
         .showcase-item p { color: #aaa; font-size: 1.1rem; }
         
-        /* Showcase Layout Adjustments */
-        .showcase-item:nth-child(1) { order: 1; margin-right: 20px; } /* Left */
-        .showcase-item:nth-child(2) { order: 2; margin-left: 20px; margin-right: 20px; } /* Center */
-        .showcase-item:nth-child(3) { order: 3; margin-left: 20px; } /* Right */
+        /* Showcase Item Positions */
+        .showcase-item:nth-child(1) { order: 1; align-self: flex-start; } /* First item on the left */
+        .showcase-item:nth-child(2) { order: 2; align-self: center; } /* Second item in the center */
+        .showcase-item:nth-child(3) { order: 3; align-self: flex-end; } /* Third item on the right */
 
         @media (max-width: 768px) {
-            .showcase-item { 
-                width: 100%; 
-                margin: 10px 0; /* Stacks items vertically */
-            }
+            .showcase-item { width: 100%; }
         }
 
         /* Version List Styles */
