@@ -19,445 +19,246 @@
     <link href="images/logo.png" rel="icon" sizes="32x32" type="image/png"/>
     <link href="images/logo.png" rel="icon" sizes="16x16" type="image/png"/>
 
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"/>
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        body { 
-            font-family: Arial, sans-serif; 
-            margin: 0; 
-            padding: 0; 
-            box-sizing: border-box; 
-            background: linear-gradient(120deg, #000000, #000000, #000000); 
-            color: #fff; 
-            overflow-x: hidden; 
-            user-select: none; 
-            -ms-overflow-style: none; 
-            scrollbar-width: none; 
-            position: relative; 
-            scroll-behavior: smooth;
-        }
-        .container { 
-            width: 90%; 
-            margin: 0 auto; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            flex-direction: column; /* Stack items vertically */
-        }
-        .logo h1 { margin: 0; }
-        nav ul { list-style: none; padding: 0; margin: 0; display: flex; }
-        nav ul li { margin-left: 40px; }
-        nav ul li a { color: #fff; text-decoration: none; padding: 5px 10px; border: 1px solid transparent; transition: all 0.3s ease; }
-        nav ul li a:hover { border: 1px solid #fff; border-radius: 5px; }
-        nav ul li a i { margin-right: 5px; }
-        main { 
-            padding: 20px; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            min-height: 100vh; 
-            position: relative; 
-            z-index: 1; 
-        }
-        .main-content { 
-            display: flex; 
-            justify-content: center; 
-            align-items: flex-start; 
-            max-width: 1200px; 
-            width: 100%; 
-            margin-top: -50px; 
-        }
-        .left-content { 
-            flex: 1; 
-            text-align: left; 
-            margin-right: 225px; 
-        }
-        .left-content h2 { 
-            font-size: 2.5rem; 
-            background-image: linear-gradient(120deg, #8a2be2, #ff00ff); 
-            -webkit-background-clip: text; 
-            background-clip: text; 
-            color: transparent; 
-            text-shadow: 0 0 5px rgba(137, 43, 226, 0.719); 
-            margin-bottom: 10px; 
-        }
-        .left-content p { font-size: 1.25rem; }
-        .buttons { margin-top: 20px; }
-        .button { 
-            display: inline-block; 
-            padding: 10px 20px; 
-            background-color: #333; 
-            color: #fff; 
-            text-decoration: none; 
-            border: 1px solid transparent; 
-            border-radius: 5px; 
-            transition: background-color 0.3s ease, transform 0.2s ease; 
-            margin-right: 10px; 
-        }
-        .button:hover { 
-            background-color: #555; 
-            transform: scale(1.05); 
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2); 
-        }
-        .screenshot-container { 
-            display: flex; 
-            justify-content: flex-end; 
-            align-items: center; 
-            height: 25vh; 
-            margin: 20px -275px; 
-            padding-right: 10%; 
-        }
-        .screenshot { 
-            width: 100%; 
-            max-width: 800px; 
-            box-shadow: 0 0 20px 10px rgba(128, 0, 128, 0.7); 
-            margin-top: 6vh; 
-            animation: start 1s ease-in-out 0s 1, float 3s ease-in-out infinite 1s, glow 3s ease-in-out infinite 1s; 
-        }
-        @keyframes start { 
-            0% { transform: perspective(1000px) rotateY(0deg); box-shadow: 0 0 20px 10px rgba(128, 0, 128, 0.7); } 
-            100% { transform: perspective(1000px) rotateY(-30deg); box-shadow: 0 0 20px 10px rgba(128, 0, 128, 0.7); } 
-        }
-        @keyframes float { 
-            0%, 100% { transform: translateY(0) perspective(1000px) rotateY(-30deg); } 
-            50% { transform: translateY(-20px) perspective(1000px) rotateY(-30deg); } 
-        }
-        @keyframes glow { 
-            0%, 100% { box-shadow: 0 0 20px 10px rgba(128, 0, 128, 0.7); } 
-            50% { box-shadow: 0 0 30px 15px rgba(128, 0, 128, 1); } 
-        }
-        #stars { 
-            position: fixed; 
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 100%; 
-            z-index: 0; 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Courier New', monospace;
+            color: #e0e0e0;
         }
 
-        .showcase-section { 
-            width: 100%; 
-            height: 100vh; 
-            background-color: #222; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            padding: 40px 20px; 
-        }
-        .showcase-grid { 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: flex-start; 
-            max-width: 1200px; 
-            width: 100%; 
-            flex-direction: column; 
-        }
-        .showcase-item { 
-            width: 70%; 
-            margin: 20px 0; 
-            text-align: center; 
-        }
-        .showcase-item img { 
-            width: 100%; 
-            height: auto; 
-            border-radius: 10px; 
-            box-shadow: 0 0 20px rgba(128, 0, 128, 0.7); 
-            transition: transform 0.3s ease; 
-        }
-        .showcase-item img:hover { transform: scale(1.1); } /* Slightly increase scale on hover */
-        .showcase-item h3 { margin-top: 15px; font-size: 1.5rem; color: #fff; }
-        .showcase-item p { color: #aaa; font-size: 1.1rem; }
-        
-        /* Showcase Item Positions */
-        .showcase-item:nth-child(1) { order: 1; align-self: flex-start; }
-        .showcase-item:nth-child(2) { order: 2; align-self: center; } 
-        .showcase-item:nth-child(3) { order: 3; align-self: flex-end; }
-
-        @media (max-width: 768px) {
-            .showcase-item { width: 100%; }
+        body {
+            background: #1a1a2e;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 50px;
         }
 
-        .version-list { 
-            padding: 40px 20px; 
-            background-color: #111; 
-            height: 100vh; 
-            display: flex; 
-            flex-direction: column; 
-            justify-content: center; 
-            align-items: center; 
+        .image-container {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin-bottom: 20px;
         }
-        .version-list h3 { 
-            text-align: center; 
-            font-size: 2rem; 
-            margin-bottom: 20px; 
-            color: #ff00ff; 
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(138, 43, 226, 0.6), 0 0 50px rgba(75, 0, 130, 0.5);
         }
-        .version-item { 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            max-width: 800px; 
-            width: 100%; 
-            margin: 10px 0; 
-            padding: 10px; 
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
+
+        .image-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(138, 43, 226, 0.3), transparent 70%);
+            animation: glow 2s infinite alternate;
         }
-        .version-item:last-child { border-bottom: none; }
-        .version-item h4 { margin: 0; color: #fff; flex: 1; }
-        .version-item a { 
-            display: inline-block; 
-            padding: 10px 20px; 
-            background-color: #333; 
-            color: #fff; 
-            text-decoration: none; 
-            border-radius: 5px; 
-            transition: background-color 0.3s ease, transform 0.2s ease; 
-            margin-right: 10px; 
+
+        @keyframes glow {
+            from { transform: scale(0.95); opacity: 0.6; }
+            to { transform: scale(1.05); opacity: 1; }
         }
-        .version-item a:hover { 
-            background-color: #555; 
-            transform: scale(1.05); 
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2); 
+
+        h1 {
+            font-size: 2em;
+            color: #bf40bf;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .button {
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            background-color: #6200ea;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .button:hover {
+            background-color: #3700b3;
+            transform: translateY(-2px);
+        }
+
+        .feature-list {
+            background: rgba(33, 33, 55, 0.9);
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 900px;
+            width: 90%;
+            max-height: 500px;
+            overflow-y: auto;
+            box-shadow: 0px 0px 15px rgba(75, 0, 130, 0.5);
+        }
+
+        .feature-list h2 {
+            font-size: 1.5em;
+            color: #bb86fc;
+            margin-bottom: 15px;
+        }
+
+        .feature-list ul {
+            list-style: none;
+            line-height: 1.8;
+        }
+
+        .feature-list ul li {
+            display: flex;
+            align-items: center;
+            color: #8f8fcc;
+            font-size: 1em;
+        }
+
+        .feature-list ul li::before {
+            content: ">";
+            color: #bb86fc;
+            margin-right: 8px;
+        }
+
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: rgba(138, 43, 226, 0.6);
+            border-radius: 50%;
+            animation: float 10s infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) translateX(0); }
+            50% { transform: translateY(-80px) translateX(30px); }
+            100% { transform: translateY(0) translateX(0); }
+        }
+
+        .showcase-image-container {
+            position: relative;
+            width: 600px;
+            height: 400px;
+            margin-top: 40px;
+        }
+
+        .showcase-image-container img {
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(138, 43, 226, 0.6), 0 0 50px rgba(75, 0, 130, 0.5);
+        }
+
+        .showcase-image-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+            background: radial-gradient(circle, rgba(138, 43, 226, 0.3), transparent 70%);
+            animation: glow 2s infinite alternate;
         }
     </style>
 </head>
 <body>
-    <canvas id="stars"></canvas>
-
-
-   <!-- Main Section -->
-   <main>
-      <div class="main-content">
-         <div class="left-content">
-            <h2 style="position: absolute; top: 20px; left: 20px; font-size: 1rem; color: #888;">
-               <a href="https://schuh.lol/schuhrewrite" target="_blank" style="color: #888; text-decoration: none;">
-                  Credits to schuh1337 for the home section part
-               </a>
-            </h2>
-
-            <h2>0x Raider</h2>
-            <p>0x Raider Made With High Quality.</p>
-            <div class="buttons">
-               <a class="button" onclick="javascript: window.open('https://easyupload.io/4wbprg');" style="cursor: pointer;">
-                  <i class="fa-solid fa-download" style="margin-right: 6px;"></i>
-                  Download Latest Version
-               </a>
-               <a class="button" onclick="javascript: window.open('https://discord.gg/eqNCeB4rEB');" style="cursor: pointer;">
-                  <i class="fa-brands fa-discord" style="margin-right: 6px;"></i>
-                  Discord Server
-               </a>
-            </div>
-         </div>
-         <div class="screenshot-container">
-            <img class="screenshot" draggable="false" src="images/0x.png" alt="0x Raider Screenshot"/>
-         </div>
-      </div>
-   </main>
-
-
-
-<!-- Showcase Section -->
-<section class="showcase-section">
-    <div class="showcase-grid">
-        <div class="showcase-item">
-            <img src="images/tool1.png" alt="Tool Showcase 1"/>
-            <h3>Cheap</h3>
-            <p>Our Tool Is Highly Affordable :D.</p>
-        </div>
-        <div class="showcase-item">
-            <img src="images/tool2.png" alt="Tool Showcase 2"/>
-            <h3>High Quality</h3>
-            <p>Our Joiner Is Unflagged And Supports 2 Captcha Solvers.</p>
-        </div>
-        <div class="showcase-item">
-            <img src="images/tool3.png" alt="Tool Showcase 3"/>
-            <h3>24/7 Support</h3>
-            <p>We Provide At All Time Support And Fix Each Single Found Bug The Next Day.</p>
-        </div>
+    <div class="particles"></div>
+    <div class="image-container">
+        <img src="https://cdn.discordapp.com/attachments/1300806304767410252/1303050767887896627/logo.png?ex=672a5818&is=67290698&hm=256d07554ca195d4eb7f943f7af83ab34e8ed659bd08544031fe2bd80d3ae941&" alt="0x Raider Logo">
     </div>
-</section>
-
-
-
-<!-- Shop Section -->
-<section class="shop-section">
-    <h2>Shop</h2>
-    <div class="sellix-embed-container">
-        
-        <!-- Product 1 -->
-        <div class="product-card">
-            <h3 class="product-name">1 Week Account</h3>
-            <iframe src="https://embed.sellix.io/product/670d4208293b1" width="300" height="500" style="border:none;"></iframe>
-        </div>
-
-        <!-- Product 2 -->
-        <div class="product-card">
-            <h3 class="product-name">1 Month Account</h3>
-            <iframe src="https://embed.sellix.io/product/671679d53a0ce" width="300" height="500" style="border:none;"></iframe>
-        </div>
-
-        <!-- Product 3 -->
-        <div class="product-card">
-            <h3 class="product-name">Lifetime Account</h3>
-            <iframe src="https://embed.sellix.io/product/67167a3d2b8ec" width="300" height="500" style="border:none;"></iframe>
-        </div>
-
+    <h1>0x Raider - Ultimate Tool</h1>
+    <div class="buttons">
+        <a class="button" onclick="javascript: window.open('https://discord.gg/0tool');">
+            <i class="fab fa-discord" style="margin-right: 6px;"></i>
+            Discord Server
+        </a>
+        <a class="button" onclick="javascript: window.open('https://easyupload.io/4wbprg');">
+            <i class="fas fa-download" style="margin-right: 6px;"></i>
+            Download Latest Version
+        </a>
     </div>
-</section>
-
-<style>
-    .shop-section {
-        padding: 40px 20px;
-        background-color: #333;
-        color: #fff;
-        text-align: center;
-        min-height: 100vh; /* Make section fill the entire viewport height */
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    }
-
-    .shop-section h2 {
-        font-size: 2.5rem;
-        background-image: linear-gradient(120deg, #8a2be2, #ff00ff);
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-        margin-bottom: 20px;
-    }
-
-    .sellix-embed-container {
-        display: flex;
-        justify-content: center;
-        gap: 20px;
-        flex-wrap: wrap;
-        align-items: center;
-    }
-
-    .product-card {
-        position: relative;
-        display: inline-block;
-        overflow: hidden;
-        text-align: center;
-    }
-
-    .product-name {
-        font-size: 1.5rem;
-        color: #fff;
-        margin-bottom: 10px;
-        font-weight: bold;
-        text-shadow: 0 0 5px rgba(255, 0, 255, 0.7);
-    }
-
-    .sellix-embed-container iframe {
-        border-radius: 10px;
-        box-shadow: 0 20px 15px rgba(128, 0, 128, 0.7);
-        transition: transform 0.3s ease, filter 0.3s ease, box-shadow 0.3s ease;
-        filter: blur(5px);
-        border: none;
-    }
-
-    .sellix-embed-container iframe:hover {
-        transform: scale(1.05);
-        filter: blur(0);
-        box-shadow: 0 0 25px rgba(255, 0, 255, 0.8);
-    }
-
-    @media (max-width: 768px) {
-        .sellix-embed-container {
-            flex-direction: column;
-            align-items: center;
-        }
-    }
-</style>
-
-
-
-
-
-
-
-
-    
-    <!-- Version List Section -->
-    <section class="version-list">
-        <h3>Previous Versions</h3>
-        
-        <div class="version-item">
-            <h4>Version 0.1</h4>
-            <a class="button" onclick="javascript: window.open('https://realgekkefries.github.io/0xRaider/');" style="cursor: pointer; position: relative; z-index: 1;">
-                <i class="fa-solid fa-download" style="margin-right: 6px;"></i>Download
-            </a>
-        </div>
-        
-        <div class="version-item">
-            <h4>Version 0.2</h4>
-            <a class="button" onclick="javascript: window.open('https://www.dropbox.com/scl/fi/l87k62vmfisz8rp3pwmed/0x-Raider-V0.2.zip?rlkey=dqvvzhhztrukok0kki3lrgb7r&st=keg674jy&dl=1');" style="cursor: pointer; position: relative; z-index: 1;">
-                <i class="fa-solid fa-download" style="margin-right: 6px;"></i>Download
-            </a>
-        </div>
-
-        <div class="version-item">
-            <h4>Version 0.3</h4>
-            <a class="button" onclick="javascript: window.open('https://www.dropbox.com/scl/fi/6ysb5hq9x4du288ijo2vu/version-0.3.zip?rlkey=v56f7ihugsw7w1mkpcbl4ljoh&st=y3s7saga&dl=1');" style="cursor: pointer; position: relative; z-index: 1;">
-                <i class="fa-solid fa-download" style="margin-right: 6px;"></i>Download
-            </a>
-        </div>
-
-        <div class="version-item">
-            <h4>Version 0.4</h4>
-            <a class="button" onclick="javascript: window.open('https://www.dropbox.com/scl/fi/d7y7qicxf1odxit6yjdcn/version-0.4.zip?rlkey=9kpi0i53kmoz95x21q0a5shry&st=qu3arfco&dl=1');" style="cursor: pointer; position: relative; z-index: 1;">
-                <i class="fa-solid fa-download" style="margin-right: 6px;"></i>Download
-            </a>
-        </div>
-        
-    </section>
-
+    <div class="feature-list">
+        <h2>Features</h2>
+        <ul>
+            <li>🌐 Supported Proxies</li>
+            <ul>
+                <li>• HTTP</li>
+                <li>• SOCKS5</li>
+            </ul>
+            <li>🧩 Supported Solvers</li>
+            <ul>
+                <li>• CSolver</li>
+            </ul>
+            <li>🔧 Available Functions</li>
+            <ul>
+                <li>• Guild Joiner</li>
+                <li>• Guild Leaver</li>
+                <li>• Rule Bypasser</li>
+                <li>• Restorecord Bypasser</li>
+                <li>• Fetch Member IDs</li>
+                <li>• Message Spammer</li>
+                <li>• Reaction Adder</li>
+                <li>• Nickname Changer</li>
+                <li>• Bio Changer</li>
+                <li>• Pronounce Changer</li>
+                <li>• Onboarding Bypasser</li>
+                <li>• PFP Changer</li>
+                <li>• Button Clicker</li>
+                <li>• Thread Spammer</li>
+                <li>• VC Joiner</li>
+                <li>• VC Leaver</li>
+                <li>• Token Formatter</li>
+                <li>• Guild Info</li>
+                <li>• Invite Info</li>
+                <li>• Messages Logger</li>
+                <li>• User Info</li>
+                <li>• Tokens Checker</li>
+                <li>• IP Checker</li>
+                <li>• Tokens Onliner</li>
+            </ul>
+        </ul>
+    </div>
+    <div class="showcase-image-container">
+        <img src="https://cdn.discordapp.com/attachments/1300806304767410252/1303050520830939176/image.png?ex=672a57dd&is=6729065d&hm=2b7958109080e995b4212fd44a0ecc27fc242093d225b66075aa7cda2ece2dd8&" alt="0x Raider Tool Showcase">
+    </div>
     <script>
-        const canvas = document.getElementById('stars');
-        const ctx = canvas.getContext('2d');
-        let stars = [];
+        const particleContainer = document.querySelector('.particles');
+        const numParticles = 30;
 
-        function resizeCanvas() { 
-            canvas.width = window.innerWidth; 
-            canvas.height = window.innerHeight; 
+        for (let i = 0; i < numParticles; i++) {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            particle.style.left = `${Math.random() * 100}vw`;
+            particle.style.top = `${Math.random() * 100}vh`;
+            particle.style.animationDuration = `${5 + Math.random() * 10}s`;
+            particle.style.animationDelay = `${Math.random() * 5}s`;
+            particleContainer.appendChild(particle);
         }
-
-        resizeCanvas();
-
-        // Generate stars
-        for (let i = 0; i < 100; i++) {
-            stars.push({
-                x: Math.random() * canvas.width, 
-                y: Math.random() * canvas.height, 
-                radius: Math.random() * 2, 
-                speed: Math.random() * 2 + 0.5, 
-                opacity: Math.random()
-            });
-        }
-
-        // Animate stars
-        function animateStars() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            for (let i = 0; i < stars.length; i++) {
-                const star = stars[i];
-                star.y -= star.speed;
-
-                if (star.y < 0) {
-                    star.y = canvas.height;
-                    star.x = Math.random() * canvas.width;
-                }
-                ctx.beginPath();
-                ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`; // Corrected the syntax here
-                ctx.fill();
-            }
-            requestAnimationFrame(animateStars);
-        }
-
-        animateStars();
-        window.addEventListener('resize', resizeCanvas);
     </script>
 </body>
 </html>
-
