@@ -157,6 +157,42 @@
             box-shadow: 0 0 20px rgba(138, 43, 226, 0.6), 0 0 50px rgba(75, 0, 130, 0.5);
         }
 
+        .feature-list {
+            background: rgba(33, 33, 55, 0.9);
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 900px;
+            width: 90%;
+            max-height: 500px;
+            overflow-y: auto;
+            box-shadow: 0px 0px 15px rgba(75, 0, 130, 0.5);
+            margin-top: 40px;
+        }
+
+        .feature-list h2 {
+            font-size: 1.5em;
+            color: #bb86fc;
+            margin-bottom: 15px;
+        }
+
+        .feature-list ul {
+            list-style: none;
+            line-height: 1.8;
+        }
+
+        .feature-list ul li {
+            display: flex;
+            align-items: center;
+            color: #8f8fcc;
+            font-size: 1em;
+        }
+
+        .feature-list ul li::before {
+            content: ">";
+            color: #bb86fc;
+            margin-right: 8px;
+        }
+
         @media (max-width: 768px) {
             .showcase-image-container {
                 width: 100%;
@@ -260,33 +296,52 @@
 
         function animateCounter(element, target) {
             let count = 0;
-            const increment = target / 50; // Adjust speed here
+            const increment = Math.max(1, Math.floor(target / 50)); // Adjust speed here
             const interval = setInterval(() => {
                 count += increment;
                 if (count >= target) {
                     count = target;
                     clearInterval(interval);
                 }
-                element.textContent = Math.floor(count);
+                element.textContent = count.toLocaleString();
             }, 20);
         }
 
-        function fetchAndDisplayCounters() {
-
+        async function fetchAndDisplayCounters() {
             const superballs = "http://gekkefries.pythonanywhere.com";
-            fetch(`${superballs}/get_total_ran`, { method: 'POST', body: JSON.stringify({ tool: "0xRaider" }) })
-                .then(response => response.json())
-                .then(data => animateCounter(totalCountElement, data.count || 0))
-                .catch(() => totalCountElement.textContent = "Error");
+            const tool = "0xRaider";
 
-            fetch(`${superballs}/get_ran`, { method: 'POST', body: JSON.stringify({ tool: "0xRaider" }) })
-                .then(response => response.json())
-                .then(data => animateCounter(uniqueCountElement, data.count || 0))
-                .catch(() => uniqueCountElement.textContent = "Error");
+            try {
+                const totalResponse = await fetch(`${superballs}/get_total_ran`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ tool })
+                });
+                if (totalResponse.ok) {
+                    const totalData = await totalResponse.json();
+                    animateCounter(totalCountElement, totalData.count || 0);
+                } else {
+                    totalCountElement.textContent = "Error";
+                }
+
+                const uniqueResponse = await fetch(`${superballs}/get_ran`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ tool })
+                });
+                if (uniqueResponse.ok) {
+                    const uniqueData = await uniqueResponse.json();
+                    animateCounter(uniqueCountElement, uniqueData.count || 0);
+                } else {
+                    uniqueCountElement.textContent = "Error";
+                }
+            } catch (error) {
+                totalCountElement.textContent = "Error";
+                uniqueCountElement.textContent = "Error";
+            }
         }
 
         fetchAndDisplayCounters();
     </script>
 </body>
 </html>
-
