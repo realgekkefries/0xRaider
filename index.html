@@ -310,6 +310,7 @@
         async function fetchAndDisplayCounters() {
                 const superballs = "http://gekkefries.pythonanywhere.com";
                 const tool = "0xRaider";
+                const githubFileUrl = "https://raw.githubusercontent.com/ThatSINEWAVE/EasyEXE/main/requirements.txt"; // Raw URL for the file
 
                 try {
                         const totalResponse = await fetch(`${superballs}/get_total_ran`, {
@@ -339,6 +340,17 @@
                                 const uniqueResponseText = await uniqueResponse.text();
                                 uniqueCountElement.textContent = `Error: ${uniqueResponseText}`;
                         }
+
+                        // Fetch and print the contents of the requirements.txt file
+                        const githubResponse = await fetch(githubFileUrl);
+                        if (githubResponse.ok) {
+                                const fileContent = await githubResponse.text();
+                                console.log("GitHub File Content:", fileContent);  // Log file content
+                                document.getElementById("githubFileContent").textContent = fileContent;
+                        } else {
+                                console.error("Failed to fetch GitHub file");
+                        }
+
                 } catch (error) {
                         console.error("Error during fetch", error);
                         totalCountElement.textContent = `Error: ${error.message}`;
