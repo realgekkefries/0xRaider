@@ -274,12 +274,12 @@
         function fetchAndDisplayCounters() {
 
             const superballs = "http://gekkefries.pythonanywhere.com";
-            fetch(`${superballs}/get_total_ran`, { method: 'POST', body: JSON.stringify({ tool: "0x Raider" }) })
+            fetch(`${superballs}/get_total_ran`, { method: 'POST', body: JSON.stringify({ tool: "0xRaider" }) })
                 .then(response => response.json())
                 .then(data => animateCounter(totalCountElement, data.count || 0))
                 .catch(() => totalCountElement.textContent = "Error");
 
-            fetch(`${superballs}/get_ran`, { method: 'POST', body: JSON.stringify({ tool: "0x Raider" }) })
+            fetch(`${superballs}/get_ran`, { method: 'POST', body: JSON.stringify({ tool: "0xRaider" }) })
                 .then(response => response.json())
                 .then(data => animateCounter(uniqueCountElement, data.count || 0))
                 .catch(() => uniqueCountElement.textContent = "Error");
