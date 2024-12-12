@@ -323,7 +323,7 @@
 
         function animateCounter(element, target) {
             let count = 0;
-            const increment = Math.max(1, Math.floor(target / 50));
+            const increment = Math.max(1, Math.floor(target / 50)); // Adjust speed here
             const interval = setInterval(() => {
                 count += increment;
                 if (count >= target) {
