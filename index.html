@@ -323,13 +323,20 @@
 
         function animateCounter(element, target) {
             let count = 0;
-            const increment = Math.max(1, Math.floor(target / 50)); // Adjust speed here
+            let increment = Math.max(1, Math.floor(target / 50)); // Initial increment value
             const interval = setInterval(() => {
                 count += increment;
+
+                // Simulate "breaking" behavior when count is above 90% of the target
+                if (count >= target * 0.9 && count < target) {
+                    increment = Math.max(1, increment - Math.floor(increment / 4)); // Gradually decrease increment
+                }
+
                 if (count >= target) {
                     count = target;
                     clearInterval(interval);
                 }
+
                 element.textContent = count.toLocaleString();
             }, 20);
         }
@@ -344,7 +351,7 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ tool })
                 });
-                console.log("Total Response:", totalResponse);  // Log full response object
+                console.log("Total Response:", totalResponse); // Log full response object
                 if (totalResponse.ok) {
                     const totalData = await totalResponse.json();
                     animateCounter(totalCountElement, totalData.count || 0);
@@ -358,7 +365,7 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ tool })
                 });
-                console.log("Unique Response:", uniqueResponse);  // Log full response object
+                console.log("Unique Response:", uniqueResponse); // Log full response object
                 if (uniqueResponse.ok) {
                     const uniqueData = await uniqueResponse.json();
                     animateCounter(uniqueCountElement, uniqueData.count || 0);
