@@ -323,20 +323,13 @@
 
         function animateCounter(element, target) {
             let count = 0;
-            let increment = Math.max(1, Math.floor(target / 50)); // Initial increment value
+            const increment = Math.max(1, Math.floor(target / 50));
             const interval = setInterval(() => {
                 count += increment;
-
-                // Simulate "breaking" behavior when count is above 90% of the target
-                if (count >= target * 0.6 && count < target) {
-                    increment = Math.max(1, increment - Math.floor(increment / 4)); // Gradually decrease increment
-                }
-
                 if (count >= target) {
                     count = target;
                     clearInterval(interval);
                 }
-
                 element.textContent = count.toLocaleString();
             }, 20);
         }
@@ -346,37 +339,37 @@
             const tool = "0xRaider";
 
             try {
-                const totalResponse = await fetch(`${superballs}/get_total_ran`, {
+                const totalResponse = await fetch(${superballs}/get_total_ran, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ tool })
                 });
-                console.log("Total Response:", totalResponse); // Log full response object
+                console.log("Total Response:", totalResponse);  // Log full response object
                 if (totalResponse.ok) {
                     const totalData = await totalResponse.json();
                     animateCounter(totalCountElement, totalData.count || 0);
                 } else {
                     const totalResponseText = await totalResponse.text();
-                    totalCountElement.textContent = `Error: ${totalResponseText}`;
+                    totalCountElement.textContent = Error: ${totalResponseText};
                 }
 
-                const uniqueResponse = await fetch(`${superballs}/get_ran`, {
+                const uniqueResponse = await fetch(${superballs}/get_ran, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ tool })
                 });
-                console.log("Unique Response:", uniqueResponse); // Log full response object
+                console.log("Unique Response:", uniqueResponse);  // Log full response object
                 if (uniqueResponse.ok) {
                     const uniqueData = await uniqueResponse.json();
                     animateCounter(uniqueCountElement, uniqueData.count || 0);
                 } else {
                     const uniqueResponseText = await uniqueResponse.text();
-                    uniqueCountElement.textContent = `Error: ${uniqueResponseText}`;
+                    uniqueCountElement.textContent = Error: ${uniqueResponseText};
                 }
             } catch (error) {
                 console.error("Error during fetch", error);
-                totalCountElement.textContent = `Error: ${error.message}`;
-                uniqueCountElement.textContent = `Error: ${error.message}`;
+                totalCountElement.textContent = Error: ${error.message};
+                uniqueCountElement.textContent = Error: ${error.message};
             }
         }
 
