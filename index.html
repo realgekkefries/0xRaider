@@ -328,7 +328,7 @@
                 count += increment;
 
                 // Simulate "breaking" behavior when count is above 90% of the target
-                if (count >= target * 0.9 && count < target) {
+                if (count >= target * 0.6 && count < target) {
                     increment = Math.max(1, increment - Math.floor(increment / 4)); // Gradually decrease increment
                 }
 
