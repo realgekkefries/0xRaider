@@ -29,10 +29,9 @@
         }
 
         body {
-            /* Changed the background to an animated gradient */
             background: linear-gradient(45deg, #1a0033, #37006e, #000000);
-            background-size: 400% 400%; /* Set background size for smooth animation */
-            animation: gradientAnimation 15s ease infinite; /* Apply animation */
+            background-size: 400% 400%; 
+            animation: gradientAnimation 15s ease infinite; 
             overflow-x: hidden;
             display: flex;
             flex-direction: column;
@@ -56,12 +55,12 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(51, 51, 51, 0.8); /* Semi-transparent background */
+            background: rgba(51, 51, 51, 0.8);
             padding: 15px 0;
             text-align: center;
             z-index: 10;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow effect */
-            backdrop-filter: blur(10px); /* Subtle blur effect */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+            backdrop-filter: blur(10px); 
         }
 
         nav a {
@@ -359,7 +358,7 @@
 
         function animateCounter(element, target) {
             let count = 0;
-            const increment = Math.max(1, Math.floor(target / 50)); // Adjust speed here
+            const increment = Math.max(1, Math.floor(target / 50)); 
             const interval = setInterval(() => {
                 count += increment;
                 if (count >= target) {
@@ -394,7 +393,7 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ tool })
                 });
-                console.log("Unique Response:", uniqueResponse);  // Log full response object
+                console.log("Unique Response:", uniqueResponse); 
                 if (uniqueResponse.ok) {
                     const uniqueData = await uniqueResponse.json();
                     animateCounter(uniqueCountElement, uniqueData.count || 0);
