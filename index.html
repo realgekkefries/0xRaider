@@ -270,52 +270,48 @@
     </section>
 
     <section id="features">
-        <h1>Available Features</h1>
-        <div class="feature-list">
-            <h2>Supported Proxy Types</h2>
-            <ul>
-                <li>• HTTP</li>
-                <li>• SOCKS5</li>
-            </ul>
-        </div>
-        <div class="feature-list">
-            <h2>Supported Solvers</h2>
-            <ul>
-                <li>• CSolver</li>
-            </ul>
-        </div>
         <div class="feature-list">
             <h2>Features</h2>
             <ul>
-                <li>• Guild Joiner</li>
-                <li>• Guild Leaver</li>
-                <li>• Rule Bypasser</li>
-                <li>• Restorecord Bypasser</li>
-                <li>• Fetch Member IDs</li>
-                <li>• Message Spammer</li>
-                <li>• Reaction Adder</li>
-                <li>• Nickname Changer</li>
-                <li>• Bio Changer</li>
-                <li>• Pronounce Changer</li>
-                <li>• Onboarding Bypasser</li>
-                <li>• PFP Changer</li>
-                <li>• Button Clicker</li>
-                <li>• Thread Spammer</li>
-                <li>• VC Joiner</li>
-                <li>• VC Leaver</li>
-                <li>• Token Formatter</li>
-                <li>• Guild Info</li>
-                <li>• Invite Info</li>
-                <li>• Messages Logger</li>
-                <li>• User Info</li>
-                <li>• Tokens Checker</li>
-                <li>• IP Checker</li>
-                <li>• Tokens Onliner</li>
+                <li>🌐 Supported Proxies</li>
+                <ul>
+                    <li>• HTTP</li>
+                    <li>• SOCKS5</li>
+                </ul>
+                <li>🧩 Supported Solvers</li>
+                <ul>
+                    <li>• CSolver</li>
+                </ul>
+                <li>🔧 Available Functions</li>
+                <ul>
+                    <li>• Guild Joiner</li>
+                    <li>• Guild Leaver</li>
+                    <li>• Rule Bypasser</li>
+                    <li>• Restorecord Bypasser</li>
+                    <li>• Fetch Member IDs</li>
+                    <li>• Message Spammer</li>
+                    <li>• Reaction Adder</li>
+                    <li>• Nickname Changer</li>
+                    <li>• Bio Changer</li>
+                    <li>• Pronounce Changer</li>
+                    <li>• Onboarding Bypasser</li>
+                    <li>• PFP Changer</li>
+                    <li>• Button Clicker</li>
+                    <li>• Thread Spammer</li>
+                    <li>• VC Joiner</li>
+                    <li>• VC Leaver</li>
+                    <li>• Token Formatter</li>
+                    <li>• Guild Info</li>
+                    <li>• Invite Info</li>
+                    <li>• Messages Logger</li>
+                    <li>• User Info</li>
+                    <li>• Tokens Checker</li>
+                    <li>• IP Checker</li>
+                    <li>• Tokens Onliner</li>
+                </ul>
             </ul>
         </div>
     </section>
-
-
 
     <script>
         const totalCountElement = document.getElementById('total-count');
@@ -339,7 +335,7 @@
             const tool = "0xRaider";
 
             try {
-                const totalResponse = await fetch(`${superballs}/get_total_ran`, {
+                const totalResponse = await fetch(${superballs}/get_total_ran, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ tool })
@@ -378,3 +374,4 @@
 
 </body>
 </html>
+
