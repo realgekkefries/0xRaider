@@ -339,7 +339,7 @@
             const tool = "0xRaider";
 
             try {
-                const totalResponse = await fetch(${superballs}/get_total_ran, {
+                const totalResponse = await fetch(`${superballs}/get_total_ran`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ tool })
